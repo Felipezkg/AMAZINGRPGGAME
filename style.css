@@ -1,9 +1,9 @@
 body{
-background-color: red;
 text-align: center;
 
 }
 .telaGame {
+    border: solid black 15px;
     margin: auto;
      display: flex;
 }
