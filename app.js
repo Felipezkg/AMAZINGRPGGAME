@@ -31,7 +31,7 @@ function personagem(){
     
 
     var boneco = new Image()
-    boneco.src = 'boneco.png'
+    boneco.src = 'barbaro.png'
 
 
     var comparador = array1.indexOf(px)
@@ -49,9 +49,10 @@ function personagem(){
             
         }
         if(px==array3[comparador3]){
-            corpo = lado3        
+            corpo = lado3   
             
         }
+       
         
        
     
@@ -60,7 +61,7 @@ function personagem(){
         
 
        
-ctx.drawImage(boneco,corpo , 205, 55,55, px, 350, 140, 140)//correndo lado1
+ctx.drawImage(boneco,corpo, 720, 100,100, px, 350, 140, 140)//correndo lado1
 
 
 
@@ -74,24 +75,30 @@ ctx.drawImage(boneco,corpo , 205, 55,55, px, 350, 140, 140)//correndo lado1
    var array2 = [0,30,60,90,120,150,180,210,240,270,300,330,360,390,420,450]
    var array3 = [10,40,70,100,130,160,190,220,250,280,310,340,370,400,430,460]
     var corpo= 520
-    var lado1=600
-    var lado2=410
-    var lado3 = 500
+    var lado1=30
+    var lado2=230
+    var lado3 = 330
+    var lado4 =330
+    var lado5=430
+    var lado6=530
     var px = 0
     var esquerda = 37
     var direita = 39
   function movimentacao(evento){
      if (evento.keyCode == esquerda) {
-            px = px - 10;
+            px = px - 20;
 
     }
      if (evento.keyCode == direita ) {
-        px = px + 10;
+        px = px + 20;
+    }
+    if(evento.keyCode==undefined){
+        corpo=lado3
     }
 
         
        }
-setInterval(game,30)
+setInterval(game,10)
 document.onkeydown = movimentacao
 
 
