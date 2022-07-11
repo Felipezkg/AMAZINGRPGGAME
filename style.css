@@ -1,8 +1,19 @@
 body{
 text-align: center;
-overflow:hidden;
 
 }
-.telaGame {
-    width: 1050px;
+/*
+.canvas {
+    border: solid black 10px;
+    margin: auto;
+    display: flex;
+    background-image: url("fundo.jpg");
+    background-repeat: no-repeat;
+    background-size: 1000px, 600px;
+}
+
+*/
+
+.canvas{
+    border: solid black 10px;
 }
