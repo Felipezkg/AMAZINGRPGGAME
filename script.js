@@ -1,9 +1,13 @@
 const canvas = document.getElementById("canvas")
 const ctx = canvas.getContext('2d')
 
-// Váriavel que define a posição do objeto.
-var x = 35;
-var y = 455;
+// Váriavel que define a posição do Personagem.
+var x = 35;  // Horizontal.
+var y = 455; // Vertical.
+
+// Váriavel que define a posição do Inimigo.
+let obsx = 600; //Horizontal.
+let obsy = 455; //Vertical.
 
 // códigos do teclado
 var esquerda = 37
@@ -12,10 +16,12 @@ var direita = 39
 var baixo = 40
 
 // Quantidade de pixel que o objeto se movimenta.
-var taxa = 50;
+var taxa = 20;
 
 // Vai acionar um Evento que quando uma tecla for Pressionada ele vai executar a função Movimento.
 document.addEventListener("keydown", Movimento);
+
+
 
 // Função CENTRAL do Script. Tudo que for puxado na Atualização de Tela terá que ser colocado aqui.
 function main() {
@@ -23,6 +29,8 @@ function main() {
     background();
     // Função do Personagem(Herói).
     Personagem(x, y, 20);
+    // Função do Inimigo.
+    inimigo(obsx, obsy, 20);
 
 }
 // Função do Pano de Fundo.
@@ -42,7 +50,7 @@ function Personagem(posX, posY, raio) {
     ctx.closePath();
     ctx.fill();
 }
-// função que determina pra onde o objeto irá se movimentar.
+// Função que determina pra onde o objeto irá se movimentar.
 function Movimento(evento) {
 
     if (evento.keyCode == cima && y - taxa > 1000) { y -= - taxa;
@@ -52,6 +60,15 @@ function Movimento(evento) {
     } else if (evento.keyCode == esquerda && x - taxa > 0) { x = x - taxa;
 
     } else if (evento.keyCode == direita && x + taxa < 1000) { x = x + taxa; }
+}
+// Função que cria um Inimigo.
+function inimigo(posX, posY, raio) {
+
+    ctx.fillStyle = 'red';
+    ctx.beginPath();
+    ctx.arc(posX, posY, raio, 0, 2 * Math.PI);
+    ctx.closePath();
+    ctx.fill();
 }
 
 
