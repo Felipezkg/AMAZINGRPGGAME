@@ -169,13 +169,14 @@ function colisao(){
         dano=true
     }
     
-    if(hp2>0&&armas==obsx-40&&dano2==true){
+    if(hp2 > 0 && (armas == obsx-40||armas == obsx-10||armas==obsx-20||armas==obsx-30||armas==obsx-50) && dano2 == true){
         hp2=hp2-24
         dano2 = false
-                  
         }
-    if(armas!=obsx-40){
+        
+        if(armas != obsx-40&&armas != obsx-10&&armas!=obsx-20&&armas!=obsx-30&&armas!=obsx-50){
         dano2 = true
+
     }
 
 }
