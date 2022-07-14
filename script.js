@@ -148,7 +148,7 @@ function combate(evento){
         } else if(evento.keyCode==direita){
             andarDireira = false
         } }
-// Função que cria um Inimigo.
+// Função que cria um Inimigo.....
 function inimigo(posX, posY, raio) {
 
     ctx.fillStyle = 'red';
