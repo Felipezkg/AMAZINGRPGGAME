@@ -15,8 +15,6 @@ var cima = 38
 var direita = 39
 var baixo = 40
 
-// Quantidade de pixel que o objeto se movimenta.
-var taxa = 20;
 
 // Vai acionar um Evento que quando uma tecla for Pressionada ele vai executar a função Movimento.
 document.addEventListener("keydown", Movimento);
@@ -35,31 +33,43 @@ function main() {
 }
 // Função do Pano de Fundo.
 function background() {
-
+    
     let fundo = new Image()
     fundo.src = 'fundo.jpg'
-
+    
     ctx.drawImage(fundo, 0, 0, 1000, 600)
 }
 // Função do Personagem Principal (Herói).
 function Personagem(posX, posY, raio) {
-
-    ctx.fillStyle = 'gold';
+    
+    ctx.fillStyle = 'green';
     ctx.beginPath();
     ctx.arc(posX, posY, raio, 0, 2 * Math.PI);
     ctx.closePath();
     ctx.fill();
+
 }
+
+// Quantidade de pixel que o objeto se movimenta.
+var taxa = 20;
 // Função que determina pra onde o objeto irá se movimentar.
 function Movimento(evento) {
 
-    if (evento.keyCode == cima && y - taxa > 1000) { y -= - taxa;
+    if(evento.keyCode == cima && y - taxa > 0){
+        y = y - taxa;
 
-    } else if (evento.keyCode == baixo && y + taxa < 0) { y = y + taxa;
+        // if(y > 495){
+        //     y = 455 (TENTATIVA DE IF DENTRO DE IF PARA AND A BOLINHA ATINGIR  495 ELA VOLTE PARA 455 QUE É O PONTO INICIAL)
+        // }           (MAS OBIAMENTE NAO DEU KKKK F)
 
-    } else if (evento.keyCode == esquerda && x - taxa > 0) { x = x - taxa;
+    } else if(evento.keyCode == baixo && y + taxa < 1000){
+         y = y + taxa;
+    } else if(evento.keyCode == esquerda && x - taxa > 0){
+         x = x - taxa; 
+    } else if(evento.keyCode == direita && x + taxa < 1000){
+         x = x + taxa; 
+    }
 
-    } else if (evento.keyCode == direita && x + taxa < 1000) { x = x + taxa; }
 }
 // Função que cria um Inimigo.
 function inimigo(posX, posY, raio) {
@@ -75,3 +85,7 @@ function inimigo(posX, posY, raio) {
 // Determina a taxa de atualização da Tela e Puxa a Função Central.
 setInterval(main, 10);
 
+
+
+//COISAS QUE TEMOS QUE FAZER: SETAR UMA GRAVIDADE, SETAR UM CHÃO, POIS PRA TER UMA GRAVIDADE PRECISA
+//TER UM CHÃO, POR EXEMPLO, O X TA SETADO EM 35, PODE SER UMA BASE.
