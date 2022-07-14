@@ -179,6 +179,15 @@ function colisao(){
 
     }
 
+    if(hp2 == 0){
+        dano = false;
+    
+}
+
+    if(hp == 0){
+        dano2 = false;
+        document.location.reload(true)
+    }
 }
 function barraHp(){
 
@@ -229,3 +238,14 @@ function arma(){
 // Determina a taxa de atualização da Tela e Puxa a Função Central.
 
 requestAnimationFrame(main)
+
+// descrição do trabalho
+// função que abre a descrição
+function opeNav(){
+document.getElementById("myNav").style.width = '100%'
+    
+}
+// função que fecha a descrição
+function closeNav(){
+document.getElementById("myNav").style.width = '0%'
+}
