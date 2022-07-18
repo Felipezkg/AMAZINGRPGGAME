@@ -1,5 +1,10 @@
+body{
+    text-align: center;
+    background-color: #000000;
+}
+
 .canvas{
-    border: solid black 10px;
+    border: solid black 5px;
 }
 
 .nav-button{
@@ -35,7 +40,7 @@
     top: 10%;
     left: 5%;
     width: 100%;
-    text-align: left;
+    text-align: center;
 
 }
 
@@ -49,7 +54,7 @@
 }
 
 .overlay a:hover, .overlay a:focus{
-    color:#f1f1f1;
+    color:#f0d8d8;
 }
 
 .overlay .closebtn {
