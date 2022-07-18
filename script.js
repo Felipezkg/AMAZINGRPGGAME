@@ -273,7 +273,7 @@ function colisao(){
 
     if(hp2 == 0){
         dano = false;
-    
+
 }
 
     if(hp == 0){
@@ -331,15 +331,15 @@ function arma(){
 
 requestAnimationFrame(main)
 
+}
+
 // descrição do trabalho
 // função que abre a descrição
 function opeNav(){
-document.getElementById("myNav").style.width = '100%'
+    document.getElementById("myNav").style.width = '100%'
     
-}
-// função que fecha a descrição
-function closeNav(){
-document.getElementById("myNav").style.width = '0%'
-}
-
-}
+    }
+    // função que fecha a descrição
+    function closeNav(){
+    document.getElementById("myNav").style.width = '0%'
+    } 
