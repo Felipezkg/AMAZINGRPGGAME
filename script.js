@@ -8,13 +8,16 @@ img.src ='corpo.png'
 var cabelo = new Image()
 cabelo.src = 'cabelo.png'
 
+var esqueleto = new Image()
+esqueleto.src = "esqueleto.png"
+
 // Váriavel que define a posição do Personagem.
 var x = 900;  // Horizontal.
 var y = 455; // Vertical.
 
 // Váriavel que define a posição do Inimigo.
 let obsx = 600; //Horizontal.
-let obsy = 255; //Vertical.
+let obsy = 455; //Vertical.
 
 // códigos do teclado
 var esquerda = 37
@@ -242,12 +245,9 @@ function combate(evento){
         } }
 // Função que cria um Inimigo.....
 function inimigo(posX, posY, raio) {
+    ctx.drawImage(esqueleto,sheroi.animacaox[0],sheroi.animacaoy[1],sheroi.largura,sheroi.altura,obsx,obsy-75,100,100)
 
-    ctx.fillStyle = 'red';
-    ctx.beginPath();
-    ctx.arc(posX, posY, raio, 0, 2 * Math.PI);
-    ctx.closePath();
-    ctx.fill();
+
 }
 function colisao(){
 
