@@ -20,11 +20,11 @@ body{
 }
 
 .nav-button i {
-    color: #016b18;
+    color: #0ae93a;
 }
 
 .overlay{
-    width: 100%;
+    width: 0%;
     height: 100%;
     background-color: black;
     z-index: 9;
@@ -35,19 +35,12 @@ body{
     transition:all 0.5s;
 }
 
-.overlay-content{
-    position: relative;
-    top: 10%;
-    left: 5%;
-    width: 100%;
-    text-align: center;
 
-}
 
 .overlay a{
     padding: 8px;
     text-decoration: none;
-    color:#016b18;
+    color:#14d614;
     display: block;
     font-size: 34px;
     transition: 0.3s;

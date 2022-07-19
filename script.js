@@ -2,14 +2,29 @@ window.onload = function(){
 
 const canvas = document.getElementById("canvas")
 const ctx = canvas.getContext('2d')
-var img = new Image()
-img.src ='corpo.png'
+var eroi = new Image()
+eroi.src ='corpo.png'
 
 var cabelo = new Image()
 cabelo.src = 'cabelo.png'
 
+var cabelo2 = new Image()
+cabelo2.src = 'cabelo2.png'
+
 var esqueleto = new Image()
 esqueleto.src = "esqueleto.png"
+
+var golesc = new Image()
+golesc.src = "golpeEsqueleto.png"
+
+var golher = new Image()
+golher.src = "golpeHeroi.png"
+
+var espada = new Image()
+espada.src = 'espada.png'
+
+//variavel que determina qual imagem sera exibida na tela
+var img = eroi
 
 // Váriavel que define a posição do Personagem.
 var x = 900;  // Horizontal.
@@ -31,6 +46,8 @@ var pulo = false
 var contador = 0
 var andarEsquerda = false
 var andarDireira = false
+var conta = 0
+var cabeca = cabelo
 
 //valor inicial para o Hp heroi
 var hp=96
@@ -43,7 +60,8 @@ var animay=0
 var animax=0
 //contador da animacao
 var cont = 0
-
+//variavel de selecao de animacao de combate
+var animaG = false
 // Função CENTRAL do Script. Tudo que for puxado na Atualização de Tela terá que ser colocado aqui.
 function main() {
     // Função do Pano de Fundo.
@@ -58,8 +76,7 @@ function main() {
     barraHp()
     //que chama o jogo em 60fps
     requestAnimationFrame(main)
-    //arma
-    arma()
+    
     //movimentacao
     movimentacao()
 
@@ -68,6 +85,7 @@ function Movimento(evento) {
 
     if (evento.keyCode == cima) { 
         y =y-taxa
+        img=esqueleto
 
     } else if (evento.keyCode == baixo && y + taxa < 0) { y = y + taxa;
 
@@ -81,6 +99,7 @@ function Movimento(evento) {
 
     if(evento.keyCode == golpe){
         armas=x
+        animaG=true
     } 
     if(evento.keyCode ==espaco){
         pulo = true
@@ -91,6 +110,42 @@ function Movimento(evento) {
 
 
 function movimentacao(){
+
+    if ( animaG==true){
+        
+        cabeca = cabelo2
+        img = golher
+        animay = 1
+        
+        if(conta==2){
+            animax=2
+            andarDireira=false
+        andarEsquerda=false
+
+        }else if(conta==4){
+            animax=3
+
+        }else if(conta==6){
+            animax=4
+
+        }else if(conta==8){
+            animax=5
+
+        }else if(conta==10){
+         conta=0
+        animax=0  
+        img = eroi
+        animaG = false
+        cabeca = cabelo
+        
+
+        } 
+        conta++ 
+        
+        
+
+
+    }
 
     if (andarEsquerda==true){
         animay=1
@@ -177,10 +232,12 @@ var sheroi = {
     largura:64,
 
 }
+
 function Personagem(posX, posY) {
 
      ctx.drawImage(img,sheroi.animacaox[animax],sheroi.animacaoy[animay],sheroi.largura,sheroi.altura,x,y-75,100,100)
-     ctx.drawImage(cabelo,sheroi.animacaox[animax],sheroi.animacaoy[animay],64,64,posX,posY-75,100,100)
+     ctx.drawImage(espada,sheroi.animacaox[animax],sheroi.animacaoy[animay],sheroi.largura,sheroi.altura,x,y-75,100,100)
+     ctx.drawImage(cabeca,sheroi.animacaox[animax],sheroi.animacaoy[animay],64,64,posX,posY-75,100,100)
 
     if ( pulo ==true&&contador>=20 ){
         y=y-7
@@ -230,19 +287,16 @@ function combate(evento){
         andarEsquerda = false
         animay=2
         cont =0
+        animax = 0
     } else if(evento.keyCode==direita){
         animay=2
         andarDireira = false
+        cont=0
+        animax = 0
     }
     if(evento.keyCode == golpe){
         armas=1000
-        }else if(evento.keyCode ==esquerda){
-            andarEsquerda = false
-            animay=2
-        } else if(evento.keyCode==direita){
-            animay=2
-            andarDireira = false
-        } }
+        }}
 // Função que cria um Inimigo.....
 function inimigo(posX, posY, raio) {
     ctx.drawImage(esqueleto,sheroi.animacaox[0],sheroi.animacaoy[1],sheroi.largura,sheroi.altura,obsx,obsy-75,100,100)
@@ -315,17 +369,7 @@ function barraHp(){
 
 }
 
-function arma(){
 
-    
-    ctx.fillStyle = 'red';
-    ctx.beginPath();
-    ctx.rect(armas,455,50,10)
-    ctx.closePath();
-    ctx.fill();
-
-
-}
 
 // Determina a taxa de atualização da Tela e Puxa a Função Central.
 
