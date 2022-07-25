@@ -48,6 +48,8 @@ var andarEsquerda = false
 var andarDireira = false
 var conta = 0
 var cabeca = cabelo
+var andarBaixo = false
+var andarCima = false
 
 //calibracao da camera com objetos da tela
 var ponto = true
@@ -89,26 +91,14 @@ function main() {
     requestAnimationFrame(main)
     
     //movimentacao
-    calibracao()
+   
     
     
 
 
 
 }
-function calibracao (){
-    
-    if(andarDireira==false&&contou==10){
-        ponto2=true
-        contou=0
 
-    }else if (andarEsquerda==false&&contou2==10){
-        ponto = true
-        contou2 = 0
-    }
-    contou++
-    contou2++
-}
 
 function cam (){
 ctx.translate(camx,  camy)
@@ -119,18 +109,22 @@ if(andarDireira==true){
     camx=-5
 } else if(andarEsquerda==true){
     camx=5
+}else if(andarBaixo==true){
+
 }
 
 }
 function Movimento(evento) {
 
     if (evento.keyCode == cima) { 
-        y =y-taxa
-        img=esqueleto
+       andarCima=true
+       camy=5
 
-    } else if (evento.keyCode == baixo && y + taxa < 0) { y = y + taxa;
+    } else if (evento.keyCode == baixo ) {
+        andarBaixo = true
+        camy=-5
 
-    } else if (evento.keyCode == esquerda&& ponto==true) {
+    } else if (evento.keyCode == esquerda) {
 
         
          ponto2=false
@@ -138,7 +132,7 @@ function Movimento(evento) {
          andarEsquerda =  true
          camx=5
 
-    } else if (evento.keyCode == direita && ponto2==true) {
+    } else if (evento.keyCode == direita) {
         ponto=false
         andarDireira = true
         andarEsquerda=false
@@ -158,6 +152,80 @@ function Movimento(evento) {
 
 
 function movimentacao(){
+    if (andarCima==true){
+        animay=0
+        y=y-5
+        
+        if(cont==10){
+            animax=1
+        } else if(cont==10){
+            animax=2
+
+        }else if(cont==15){
+            animax=3
+
+        }else if(cont==20){
+            animax=4
+
+        }else if(cont==25){
+            animax=5
+
+        }else if(cont==30){
+            animax=6
+
+        }else if(cont==35){
+            animax=7
+
+        }else if(cont==40){
+            animax=8
+
+        }else if(cont==45){
+         cont=5
+        animax=0  
+
+        }  
+        cont++
+            
+
+    }
+
+    if (andarBaixo==true){
+        animay=2
+        y=y+5
+        
+        if(cont==10){
+            animax=1
+        } else if(cont==10){
+            animax=2
+
+        }else if(cont==15){
+            animax=3
+
+        }else if(cont==20){
+            animax=4
+
+        }else if(cont==25){
+            animax=5
+
+        }else if(cont==30){
+            animax=6
+
+        }else if(cont==35){
+            animax=7
+
+        }else if(cont==40){
+            animax=8
+
+        }else if(cont==45){
+         cont=5
+        animax=0  
+
+        }  
+        cont++
+            
+
+    }
+    
 
     if ( animaG==true){
         
@@ -190,9 +258,7 @@ function movimentacao(){
         } 
         conta++ 
         
-        
-
-
+       
     }
 
     if (andarEsquerda==true){
@@ -285,24 +351,6 @@ function Personagem(posX, posY) {
      ctx.drawImage(img,sheroi.animacaox[animax],sheroi.animacaoy[animay],sheroi.largura,sheroi.altura,x,y-75,100,100)
      ctx.drawImage(espada,sheroi.animacaox[animax],sheroi.animacaoy[animay],sheroi.largura,sheroi.altura,x,y-75,100,100)
      ctx.drawImage(cabeca,sheroi.animacaox[animax],sheroi.animacaoy[animay],64,64,posX,posY-75,100,100)
-
-    if ( pulo ==true&&contador>=20 ){
-        y=y-7
-        contador=contador-1
-    }
-     if(pulo==true&&contador<20){
-
-        if(contador>=1){
-            contador=contador-1
-        y=y+7        }
-        
-    }
-    if(contador==0){
-        y=455
-    }
-
-      
-
     
 
 }
@@ -319,13 +367,10 @@ document.addEventListener("keyup",combate)
 function background() {
 
     let fundo = new Image()
-    fundo.src = 'fundo.jpg'
+    fundo.src = 'fundo.png'
 
-    ctx.drawImage(fundo, 0, 00, 1000, 600)
-    ctx.drawImage(fundo, -1000, 0, 1000, 600)
-    ctx.drawImage(fundo, -2000, 0, 1000, 600)
-    ctx.drawImage(fundo, 1000, 0, 1000, 600)
-    ctx.drawImage(fundo, 2000, 0, 1000, 600)
+    ctx.drawImage(fundo, 0, 00, 4096+1000, 4096+1000)
+   
 }
 // Função do Personagem Principal (Herói).
 
@@ -346,7 +391,14 @@ function combate(evento){
         andarDireira = false
         cont=0
         animax = 0
+    }else if(evento.keyCode==cima){
+        andarCima=false
+        camy=0
+    }else if(evento.keyCode==baixo){
+        andarBaixo=false
+        camy=0
     }
+
     if(evento.keyCode == golpe){
         armas=1000
         camx=0
