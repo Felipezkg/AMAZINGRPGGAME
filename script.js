@@ -27,7 +27,7 @@ espada.src = 'espada.png'
 var img = eroi
 
 // Váriavel que define a posição do Personagem.
-var x = 900;  // Horizontal.
+var x = 500;  // Horizontal.
 var y = 455; // Vertical.
 
 // Váriavel que define a posição do Inimigo.
@@ -49,6 +49,14 @@ var andarDireira = false
 var conta = 0
 var cabeca = cabelo
 
+//calibracao da camera com objetos da tela
+var ponto = true
+var ponto2 = true
+var contou = 0
+var contou2 = 0
+//posicao da camera
+var camx = 0
+var camy = 0
 //valor inicial para o Hp heroi
 var hp=96
 //valor inicial para o Hp do inimigo
@@ -64,21 +72,54 @@ var cont = 0
 var animaG = false
 // Função CENTRAL do Script. Tudo que for puxado na Atualização de Tela terá que ser colocado aqui.
 function main() {
+    
+   
+    
     // Função do Pano de Fundo.
     background();
     // Função do Personagem(Herói).
+     cam()
     Personagem(x, y, 20);
     // Função do Inimigo.
     inimigo(obsx, obsy, 20);
     //Função colisão
     colisao()
-    //vida do personagem
-    barraHp()
+    
     //que chama o jogo em 60fps
     requestAnimationFrame(main)
     
     //movimentacao
-    movimentacao()
+    calibracao()
+    
+    
+
+
+
+}
+function calibracao (){
+    
+    if(andarDireira==false&&contou==10){
+        ponto2=true
+        contou=0
+
+    }else if (andarEsquerda==false&&contou2==10){
+        ponto = true
+        contou2 = 0
+    }
+    contou++
+    contou2++
+}
+
+function cam (){
+ctx.translate(camx,  camy)
+movimentacao()
+//vida do personagem
+barraHp()
+if(andarDireira==true){
+    camx=-5
+} else if(andarEsquerda==true){
+    camx=5
+}
 
 }
 function Movimento(evento) {
@@ -89,12 +130,19 @@ function Movimento(evento) {
 
     } else if (evento.keyCode == baixo && y + taxa < 0) { y = y + taxa;
 
-    } else if (evento.keyCode == esquerda) {
+    } else if (evento.keyCode == esquerda&& ponto==true) {
 
-         andarEsquerda=true
+        
+         ponto2=false
+         andarDireira = false
+         andarEsquerda =  true
+         camx=5
 
-    } else if (evento.keyCode == direita) {
+    } else if (evento.keyCode == direita && ponto2==true) {
+        ponto=false
         andarDireira = true
+        andarEsquerda=false
+        camx=-5
     }
 
     if(evento.keyCode == golpe){
@@ -234,7 +282,6 @@ var sheroi = {
 }
 
 function Personagem(posX, posY) {
-
      ctx.drawImage(img,sheroi.animacaox[animax],sheroi.animacaoy[animay],sheroi.largura,sheroi.altura,x,y-75,100,100)
      ctx.drawImage(espada,sheroi.animacaox[animax],sheroi.animacaoy[animay],sheroi.largura,sheroi.altura,x,y-75,100,100)
      ctx.drawImage(cabeca,sheroi.animacaox[animax],sheroi.animacaoy[animay],64,64,posX,posY-75,100,100)
@@ -274,7 +321,11 @@ function background() {
     let fundo = new Image()
     fundo.src = 'fundo.jpg'
 
-    ctx.drawImage(fundo, 0, 0, 1000, 600)
+    ctx.drawImage(fundo, 0, 00, 1000, 600)
+    ctx.drawImage(fundo, -1000, 0, 1000, 600)
+    ctx.drawImage(fundo, -2000, 0, 1000, 600)
+    ctx.drawImage(fundo, 1000, 0, 1000, 600)
+    ctx.drawImage(fundo, 2000, 0, 1000, 600)
 }
 // Função do Personagem Principal (Herói).
 
@@ -284,11 +335,13 @@ function background() {
 
 function combate(evento){
     if(evento.keyCode ==esquerda){
+        camx=0
         andarEsquerda = false
         animay=2
         cont =0
         animax = 0
     } else if(evento.keyCode==direita){
+        camx=0
         animay=2
         andarDireira = false
         cont=0
@@ -296,6 +349,7 @@ function combate(evento){
     }
     if(evento.keyCode == golpe){
         armas=1000
+        camx=0
         }}
 // Função que cria um Inimigo.....
 function inimigo(posX, posY, raio) {
@@ -341,14 +395,14 @@ function barraHp(){
     //barra de vida fundo do heroi
     ctx.fillStyle = 'white';
     ctx.beginPath();
-    ctx.rect(10,10,100,22)
+    ctx.rect(x-488,10,100,22)
     ctx.closePath();
     ctx.fill();
 
     //barra de vida do heroi
     ctx.fillStyle = 'green';
     ctx.beginPath();
-    ctx.rect(12,12,hp,18)
+    ctx.rect(x-486,12,hp,18)
     ctx.closePath();
     ctx.fill();
 
