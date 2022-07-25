@@ -36,9 +36,13 @@ let obsy = 455; //Vertical.
 
 // códigos do teclado
 var esquerda = 37
+var esquerdaA = 65
 var cima = 38
+var cimaA = 87
 var direita = 39
+var direitaA = 68
 var baixo = 40
+var baixoA = 83
 var golpe = 67
 var armas = 1000
 var espaco = 32
@@ -116,15 +120,15 @@ if(andarDireira==true){
 }
 function Movimento(evento) {
 
-    if (evento.keyCode == cima) { 
+    if (evento.keyCode == cima || evento.keyCode == cimaA) { 
        andarCima=true
        camy=5
 
-    } else if (evento.keyCode == baixo ) {
+    } else if (evento.keyCode == baixo || evento.keyCode == baixoA) {
         andarBaixo = true
         camy=-5
 
-    } else if (evento.keyCode == esquerda) {
+    } else if (evento.keyCode == esquerda || evento.keyCode == esquerdaA) {
 
         
          ponto2=false
@@ -132,7 +136,7 @@ function Movimento(evento) {
          andarEsquerda =  true
          camx=5
 
-    } else if (evento.keyCode == direita) {
+    } else if (evento.keyCode == direita || evento.keyCode == direitaA) {
         ponto=false
         andarDireira = true
         andarEsquerda=false
@@ -379,22 +383,22 @@ function background() {
 // Função que determina pra onde o objeto irá se movimentar.
 
 function combate(evento){
-    if(evento.keyCode ==esquerda){
+    if(evento.keyCode ==esquerda || evento.keyCode == esquerdaA){
         camx=0
         andarEsquerda = false
         animay=2
         cont =0
         animax = 0
-    } else if(evento.keyCode==direita){
+    } else if(evento.keyCode==direita || evento.keyCode == direitaA){
         camx=0
         animay=2
         andarDireira = false
         cont=0
         animax = 0
-    }else if(evento.keyCode==cima){
+    }else if(evento.keyCode==cima || evento.keyCode == cimaA){
         andarCima=false
         camy=0
-    }else if(evento.keyCode==baixo){
+    }else if(evento.keyCode==baixo || evento.keyCode == baixoA){
         andarBaixo=false
         camy=0
     }
