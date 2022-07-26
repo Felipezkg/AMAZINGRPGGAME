@@ -27,12 +27,30 @@ espada.src = 'espada.png'
 var img = eroi
 
 // Váriavel que define a posição do Personagem.
-var x = 500;  // Horizontal.
-var y = 455; // Vertical.
+var x = 240;  // Horizontal.
+var y = 355; // Vertical.
 
 // Váriavel que define a posição do Inimigo.
-let obsx = 600; //Horizontal.
-let obsy = 455; //Vertical.
+let obsx = 650; //Horizontal.
+let obsy = 665; //Vertical.
+let inimigo1 = 610;
+let inimigo11 = 610;
+let inimigo2 = 720;
+let inimigo12 = 720;
+let inimigo3 = 830;
+let inimigo13 = 830;
+let inimigo4 = 940;
+let inimigo14 = 940;
+let inimigo5 = 1050;
+let inimigo15 = 1050;
+let inimigo6 = 1160;
+let inimigo16 = 1160;
+let inimigo7 = 1270;
+let inimigo17 = 1270;
+let inimigo8 = 1380;
+let inimigo18 = 1380;
+let inimigo9 = 1490;
+let inimigo19 = 1490;
 
 // códigos do teclado
 var esquerda = 37
@@ -88,7 +106,15 @@ function main() {
     Personagem(x, y, 20);
     // Função do Inimigo.
     inimigo(obsx, obsy, 20);
-    //Função colisão
+    inimigo(inimigo1, inimigo11, 20);
+    inimigo(inimigo2, inimigo12, 20);
+    inimigo(inimigo3, inimigo13, 20);
+    inimigo(inimigo4, inimigo14, 20);
+    inimigo(inimigo5, inimigo15, 20);
+    inimigo(inimigo6, inimigo16, 20);
+    inimigo(inimigo7, inimigo17, 20);
+    inimigo(inimigo8, inimigo18, 20);
+    inimigo(inimigo9, inimigo19, 20);
     colisao()
     
     //que chama o jogo em 60fps
@@ -407,12 +433,22 @@ function combate(evento){
         armas=1000
         camx=0
         }}
+
 // Função que cria um Inimigo.....
 function inimigo(posX, posY, raio) {
     ctx.drawImage(esqueleto,sheroi.animacaox[0],sheroi.animacaoy[1],sheroi.largura,sheroi.altura,obsx,obsy-75,100,100)
-
-
+    ctx.drawImage(esqueleto,sheroi.animacaox[0],sheroi.animacaoy[1],sheroi.largura,sheroi.altura,inimigo1,inimigo11-75,100,100)
+    ctx.drawImage(esqueleto,sheroi.animacaox[0],sheroi.animacaoy[1],sheroi.largura,sheroi.altura,inimigo2,inimigo12-75,100,100)
+    ctx.drawImage(esqueleto,sheroi.animacaox[0],sheroi.animacaoy[1],sheroi.largura,sheroi.altura,inimigo3,inimigo13-75,100,100)
+    ctx.drawImage(esqueleto,sheroi.animacaox[0],sheroi.animacaoy[1],sheroi.largura,sheroi.altura,inimigo4,inimigo14-75,100,100)
+    ctx.drawImage(esqueleto,sheroi.animacaox[0],sheroi.animacaoy[1],sheroi.largura,sheroi.altura,inimigo5,inimigo15-75,100,100)
+    ctx.drawImage(esqueleto,sheroi.animacaox[0],sheroi.animacaoy[1],sheroi.largura,sheroi.altura,inimigo6,inimigo16-75,100,100)
+    ctx.drawImage(esqueleto,sheroi.animacaox[0],sheroi.animacaoy[1],sheroi.largura,sheroi.altura,inimigo7,inimigo17-75,100,100)
+    ctx.drawImage(esqueleto,sheroi.animacaox[0],sheroi.animacaoy[1],sheroi.largura,sheroi.altura,inimigo8,inimigo18-75,100,100)
+    ctx.drawImage(esqueleto,sheroi.animacaox[0],sheroi.animacaoy[1],sheroi.largura,sheroi.altura,inimigo9,inimigo19-75,100,100)
+   
 }
+
 function colisao(){
 
     if (x==obsx&&y==obsy){    
@@ -432,14 +468,184 @@ function colisao(){
         
         if(armas != obsx-40&&armas != obsx-10&&armas!=obsx-20&&armas!=obsx-30&&armas!=obsx-50){
         dano2 = true
-
     }
+
+    if (x==inimigo1&&y==inimigo11){    
+        if(hp>0&&dano==true){
+            hp=hp-24
+            dano = false
+        }     
+    }
+    if(x!=inimigo1){
+        dano=true
+    }
+    
+    if(hp2 > 0 && (armas == inimigo1-40||armas == inimigo1-10||armas==inimigo1-20||armas==inimigo1-30||armas==inimigo1-50) && dano2 == true){
+        hp2=hp2-24
+        dano2 = false
+        }
+        
+        if(armas != inimigo1-40&&armas != inimigo1-10&&armas!=inimigo1-20&&armas!=inimigo1-30&&armas!=inimigo1-50){
+        dano2 = true
+    }
+
+    if (x==inimigo2&&y==inimigo12){    
+        if(hp>0&&dano==true){
+            hp=hp-24
+            dano = false
+        }     
+    }
+    if(x!=inimigo2){
+        dano=true
+    }
+    
+    if(hp2 > 0 && (armas == inimigo2-40||armas == inimigo2-10||armas==inimigo2-20||armas==inimigo2-30||armas==inimigo2-50) && dano2 == true){
+        hp2=hp2-24
+        dano2 = false
+        }
+        
+        if(armas != inimigo2-40&&armas != inimigo2-10&&armas!=inimigo2-20&&armas!=inimigo2-30&&armas!=inimigo2-50){
+        dano2 = true
+    }
+
+    if (x==inimigo3&&y==inimigo13){    
+        if(hp>0&&dano==true){
+            hp=hp-24
+            dano = false
+        }     
+    }
+    if(x!=inimigo3){
+        dano=true
+    }
+    
+    if(hp2 > 0 && (armas == inimigo3-40||armas == inimigo3-10||armas==inimigo3-20||armas==inimigo3-30||armas==inimigo3-50) && dano2 == true){
+        hp2=hp2-24
+        dano2 = false
+        }
+        
+        if(armas != inimigo3-40&&armas != inimigo3-10&&armas!=inimigo3-20&&armas!=inimigo3-30&&armas!=inimigo3-50){
+        dano2 = true
+    }
+
+    if (x==inimigo4&&y==inimigo14){    
+        if(hp>0&&dano==true){
+            hp=hp-24
+            dano = false
+        }     
+    }
+    if(x!=inimigo4){
+        dano=true
+    }
+    
+    if(hp2 > 0 && (armas == inimigo4-40||armas == inimigo4-10||armas==inimigo4-20||armas==inimigo4-30||armas==inimigo4-50) && dano2 == true){
+        hp2=hp2-24
+        dano2 = false
+        }
+        
+        if(armas != inimigo4-40&&armas != inimigo4-10&&armas!=inimigo4-20&&armas!=inimigo4-30&&armas!=inimigo4-50){
+        dano2 = true
+    }
+
+    if (x==inimigo5&&y==inimigo15){    
+        if(hp>0&&dano==true){
+            hp=hp-24
+            dano = false
+        }     
+    }
+    if(x!=inimigo5){
+        dano=true
+    }
+    
+    if(hp2 > 0 && (armas == inimigo5-40||armas == inimigo5-10||armas==inimigo5-20||armas==inimigo5-30||armas==inimigo5-50) && dano2 == true){
+        hp2=hp2-24
+        dano2 = false
+        }
+        
+        if(armas != inimigo5-40&&armas != inimigo5-10&&armas!=inimigo5-20&&armas!=inimigo5-30&&armas!=inimigo5-50){
+        dano2 = true
+    }
+
+    if (x==inimigo6&&y==inimigo16){    
+        if(hp>0&&dano==true){
+            hp=hp-24
+            dano = false
+        }     
+    }
+    if(x!=inimigo6){
+        dano=true
+    }
+    
+    if(hp2 > 0 && (armas == inimigo6-40||armas == inimigo6-10||armas==inimigo6-20||armas==inimigo6-30||armas==inimigo6-50) && dano2 == true){
+        hp2=hp2-24
+        dano2 = false
+        }
+        
+        if(armas != inimigo6-40&&armas != inimigo6-10&&armas!=inimigo6-20&&armas!=inimigo6-30&&armas!=inimigo6-50){
+        dano2 = true
+    }
+
+    if (x==inimigo7&&y==inimigo17){    
+        if(hp>0&&dano==true){
+            hp=hp-24
+            dano = false
+        }     
+    }
+    if(x!=inimigo7){
+        dano=true
+    }
+    
+    if(hp2 > 0 && (armas == inimigo7-40||armas == inimigo7-10||armas==inimigo7-20||armas==inimigo7-30||armas==inimigo7-50) && dano2 == true){
+        hp2=hp2-24
+        dano2 = false
+        }
+        
+        if(armas != inimigo7-40&&armas != inimigo7-10&&armas!=inimigo7-20&&armas!=inimigo7-30&&armas!=inimigo7-50){
+        dano2 = true
+    }
+
+    if (x==inimigo8&&y==inimigo18){    
+        if(hp>0&&dano==true){
+            hp=hp-24
+            dano = false
+        }     
+    }
+    if(x!=inimigo8){
+        dano=true
+    }
+    
+    if(hp2 > 0 && (armas == inimigo8-40||armas == inimigo8-10||armas==inimigo8-20||armas==inimigo8-30||armas==inimigo8-50) && dano2 == true){
+        hp2=hp2-24
+        dano2 = false
+        }
+        
+        if(armas != inimigo8-40&&armas != inimigo8-10&&armas!=inimigo8-20&&armas!=inimigo8-30&&armas!=inimigo8-50){
+        dano2 = true
+    }
+
+    if (x==inimigo9&&y==inimigo19){    
+        if(hp>0&&dano==true){
+            hp=hp-24
+            dano = false
+        }     
+    }
+    if(x!=inimigo9){
+        dano=true
+    }
+    
+    if(hp2 > 0 && (armas == inimigo9-40||armas == inimigo9-10||armas==inimigo9-20||armas==inimigo9-30||armas==inimigo9-50) && dano2 == true){
+        hp2=hp2-24
+        dano2 = false
+        }
+        
+        if(armas != inimigo9-40&&armas != inimigo9-10&&armas!=inimigo9-20&&armas!=inimigo9-30&&armas!=inimigo9-50){
+        dano2 = true
+    }
+
 
     if(hp2 == 0){
         dano = false;
 
 }
-
     if(hp == 0){
         dano2 = false;
         document.location.reload(true)
@@ -447,28 +653,21 @@ function colisao(){
 }
 function barraHp(){
 
-
     //barra de vida fundo do heroi
     ctx.fillStyle = 'white';
     ctx.beginPath();
-    ctx.rect(x-488,10,100,22)
+    ctx.rect(x - 1,y-77,100,16)
+    ctx.rect(890,10,100,22)
     ctx.closePath();
     ctx.fill();
 
     //barra de vida do heroi
     ctx.fillStyle = 'green';
     ctx.beginPath();
-    ctx.rect(x-486,12,hp,18)
+    ctx.rect(x + 1,y - 75,hp, 12)
     ctx.closePath();
     ctx.fill();
-
-
-    //barra de vida inimiga fundo
-    ctx.fillStyle = 'white';
-    ctx.beginPath();
-    ctx.rect(890,10,100,22)
-    ctx.closePath();
-    ctx.fill();
+    
 
     //barra de vida do inimiga
     ctx.fillStyle = 'red';
@@ -476,7 +675,6 @@ function barraHp(){
     ctx.rect(892,12,hp2,18)
     ctx.closePath();
     ctx.fill();
-
 }
 
 
@@ -484,7 +682,6 @@ function barraHp(){
 // Determina a taxa de atualização da Tela e Puxa a Função Central.
 
 requestAnimationFrame(main)
-
 }
 
 // descrição do trabalho
