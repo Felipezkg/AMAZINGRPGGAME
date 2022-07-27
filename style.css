@@ -1,6 +1,6 @@
 body{
     text-align: center;
-    background-color: #000000;
+    background-color: #362504;
 }
 
 .canvas{
@@ -34,8 +34,6 @@ body{
     overflow-x:hidden ; 
     transition:all 0.5s;
 }
-
-
 
 .overlay a{
     padding: 8px;
