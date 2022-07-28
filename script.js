@@ -33,24 +33,24 @@ window.onload = function(){
     // Váriavel que define a posição do Inimigo.
     var obsx = 650; //Horizontal.
     var obsy = 665; //Vertical.
-    var inimigo1 = 410;
-    var inimigo11 = 410;
-    var inimigo2 = 720;
-    var inimigo12 = 720;
-    var inimigo3 = 830;
-    var inimigo13 = 830;
-    var inimigo4 = 940;
-    var inimigo14 = 940;
-    var inimigo5 = 1050;
-    var inimigo15 = 1050;
-    var inimigo6 = 1160;
-    var inimigo16 = 1160;
-    var inimigo7 = 1270;
-    var inimigo17 = 1270;
-    var inimigo8 = 1380;
-    var inimigo18 = 1380;
-    var inimigo9 = 1490;
-    var inimigo19 = 1490;
+    var inimigo1 = 253;
+    var inimigo11 = 680;
+    // var inimigo2 = 720;
+    // var inimigo12 = 720;
+    // var inimigo3 = 830;
+    // var inimigo13 = 830;
+    // var inimigo4 = 940;
+    // var inimigo14 = 940;
+    // var inimigo5 = 1050;
+    // var inimigo15 = 1050;
+    // var inimigo6 = 1160;
+    // var inimigo16 = 1160;
+    // var inimigo7 = 1270;
+    // var inimigo17 = 1270;
+    // var inimigo8 = 1380;
+    // var inimigo18 = 1380;
+    // var inimigo9 = 1490;
+    // var inimigo19 = 1490;
 
     // códigos do teclado
     var esquerda = 37
@@ -85,9 +85,12 @@ window.onload = function(){
     var hp = 96
     //valor inicial para o Hp do inimigo
     var hp2 = 96
+    var hp3 = 96
     //variavel para averiguação da posição
     var dano = true
     var dano2 = true
+    var dano3 = true
+    
     var animay = 0
     var animax = 0
     //contador da animacao
@@ -105,14 +108,14 @@ window.onload = function(){
         // Função do Inimigo.
         inimigo(obsx, obsy, 20);
         inimigo(inimigo1, inimigo11, 20);
-        inimigo(inimigo2, inimigo12, 20);
-        inimigo(inimigo3, inimigo13, 20);
-        inimigo(inimigo4, inimigo14, 20);
-        inimigo(inimigo5, inimigo15, 20);
-        inimigo(inimigo6, inimigo16, 20);
-        inimigo(inimigo7, inimigo17, 20);
-        inimigo(inimigo8, inimigo18, 20);
-        inimigo(inimigo9, inimigo19, 20);
+        // inimigo(inimigo2, inimigo12, 20);
+        // inimigo(inimigo3, inimigo13, 20);
+        // inimigo(inimigo4, inimigo14, 20);
+        // inimigo(inimigo5, inimigo15, 20);
+        // inimigo(inimigo6, inimigo16, 20);
+        // inimigo(inimigo7, inimigo17, 20);
+        // inimigo(inimigo8, inimigo18, 20);
+        // inimigo(inimigo9, inimigo19, 20);
         colisao()
         
         //que chama o jogo em 60fps
@@ -401,22 +404,23 @@ window.onload = function(){
     function inimigo() {
         ctx.drawImage(esqueleto,sheroi.animacaox[0],sheroi.animacaoy[1],sheroi.largura,sheroi.altura,obsx,obsy-75,100,100)
         ctx.drawImage(esqueleto,sheroi.animacaox[0],sheroi.animacaoy[1],sheroi.largura,sheroi.altura,inimigo1,inimigo11-75,100,100)
-        ctx.drawImage(esqueleto,sheroi.animacaox[0],sheroi.animacaoy[1],sheroi.largura,sheroi.altura,inimigo2,inimigo12-75,100,100)
-        ctx.drawImage(esqueleto,sheroi.animacaox[0],sheroi.animacaoy[1],sheroi.largura,sheroi.altura,inimigo3,inimigo13-75,100,100)
-        ctx.drawImage(esqueleto,sheroi.animacaox[0],sheroi.animacaoy[1],sheroi.largura,sheroi.altura,inimigo4,inimigo14-75,100,100)
-        ctx.drawImage(esqueleto,sheroi.animacaox[0],sheroi.animacaoy[1],sheroi.largura,sheroi.altura,inimigo5,inimigo15-75,100,100)
-        ctx.drawImage(esqueleto,sheroi.animacaox[0],sheroi.animacaoy[1],sheroi.largura,sheroi.altura,inimigo6,inimigo16-75,100,100)
-        ctx.drawImage(esqueleto,sheroi.animacaox[0],sheroi.animacaoy[1],sheroi.largura,sheroi.altura,inimigo7,inimigo17-75,100,100)
-        ctx.drawImage(esqueleto,sheroi.animacaox[0],sheroi.animacaoy[1],sheroi.largura,sheroi.altura,inimigo8,inimigo18-75,100,100)
-        ctx.drawImage(esqueleto,sheroi.animacaox[0],sheroi.animacaoy[1],sheroi.largura,sheroi.altura,inimigo9,inimigo19-75,100,100)
+        // ctx.drawImage(esqueleto,sheroi.animacaox[0],sheroi.animacaoy[1],sheroi.largura,sheroi.altura,inimigo2,inimigo12-75,100,100)
+        // ctx.drawImage(esqueleto,sheroi.animacaox[0],sheroi.animacaoy[1],sheroi.largura,sheroi.altura,inimigo3,inimigo13-75,100,100)
+        // ctx.drawImage(esqueleto,sheroi.animacaox[0],sheroi.animacaoy[1],sheroi.largura,sheroi.altura,inimigo4,inimigo14-75,100,100)
+        // ctx.drawImage(esqueleto,sheroi.animacaox[0],sheroi.animacaoy[1],sheroi.largura,sheroi.altura,inimigo5,inimigo15-75,100,100)
+        // ctx.drawImage(esqueleto,sheroi.animacaox[0],sheroi.animacaoy[1],sheroi.largura,sheroi.altura,inimigo6,inimigo16-75,100,100)
+        // ctx.drawImage(esqueleto,sheroi.animacaox[0],sheroi.animacaoy[1],sheroi.largura,sheroi.altura,inimigo7,inimigo17-75,100,100)
+        // ctx.drawImage(esqueleto,sheroi.animacaox[0],sheroi.animacaoy[1],sheroi.largura,sheroi.altura,inimigo8,inimigo18-75,100,100)
+        // ctx.drawImage(esqueleto,sheroi.animacaox[0],sheroi.animacaoy[1],sheroi.largura,sheroi.altura,inimigo9,inimigo19-75,100,100)
     }
 
-    function colisao(){
+    function esqueletinho1(){
+        
         if (x == obsx && y == obsy){    
             if(hp > 0 && dano == true){
                 hp = hp - 24
                 dano = false
-            }     
+            }
         }
         if(x != obsx){
             dano = true
@@ -430,6 +434,9 @@ window.onload = function(){
             if(armas != obsx - 40 && armas != obsx - 10 && armas != obsx - 20 && armas != obsx -30 && armas != obsx - 50){
             dano2 = true
         }
+    }
+
+    function esqueletinho2(){
 
         if (x == inimigo1 && y == inimigo11){    
             if(hp > 0 && dano == true){
@@ -437,170 +444,179 @@ window.onload = function(){
                 dano = false
             }
         }
-        if(x != inimigo1){
-            dano=true
-        }
+            if(x != inimigo1){
+                dano=true
+            }
         
-        if(hp2 > 0 && (armas == inimigo1 - 40 || armas == inimigo1 - 10 || armas == inimigo1 - 20 || armas == inimigo1 - 30 || armas == inimigo1 - 50) && dano2 == true){
-            hp2 = hp2 - 24
-            dano2 = false
+        if(hp3 > 0 && (armas == inimigo1 - 40 || armas == inimigo1 - 10 || armas == inimigo1 - 20 || armas == inimigo1 - 30 || armas == inimigo1 - 50) && dano3 == true){
+            hp3 = hp3 - 24
+            dano3 = false
             }
             
             if(armas != inimigo1 - 40 && armas != inimigo1 - 10 && armas != inimigo1 - 20 && armas != inimigo1 - 30 && armas != inimigo1 - 50){
-            dano2 = true
+            dano3 = true
         }
+    }
 
-        if (x == inimigo2 && y == inimigo12){    
-            if(hp > 0 && dano == true){
-                hp = hp - 24
-                dano = false
-            }     
-        }
-        if(x != inimigo2){
-            dano = true
-        }
-        
-        if(hp2 > 0 && (armas == inimigo2 - 40 || armas == inimigo2 - 10 || armas == inimigo2 - 20 || armas == inimigo2 - 30 || armas == inimigo2 - 50) && dano2 == true){
-            hp2 = hp2 - 24
-            dano2 = false
-            }
-            
-            if(armas != inimigo2 - 40 && armas != inimigo2 - 10 && armas != inimigo2 - 20 && armas != inimigo2 - 30 && armas != inimigo2 - 50){
-            dano2 = true
-        }
 
-        if (x == inimigo3 && y == inimigo13){    
-            if(hp > 0 && dano == true){
-                hp = hp - 24
-                dano = false
-            }     
-        }
-        if(x != inimigo3){
-            dano = true
-        }
-        
-        if(hp2 > 0 && (armas == inimigo3 - 40 || armas == inimigo3 - 10 || armas == inimigo3 - 20 || armas == inimigo3 - 30 || armas == inimigo3 - 50) && dano2 == true){
-            hp2 = hp2 - 24
-            dano2 = false
-            }
-            
-            if(armas != inimigo3 - 40 && armas != inimigo3 - 10 && armas != inimigo3 - 20 && armas != inimigo3 - 30 && armas != inimigo3 - 50){
-            dano2 = true
-        }
 
-        if (x == inimigo4 && y == inimigo14){    
-            if(hp > 0 && dano == true){
-                hp = hp - 24
-                dano = false
-            }     
-        }
-        if(x != inimigo4){
-            dano = true
-        }
-        
-        if(hp2 > 0 && (armas == inimigo4 - 40 || armas == inimigo4 - 10 || armas == inimigo4 - 20 || armas == inimigo4 - 30 || armas == inimigo4 - 50) && dano2 == true){
-            hp2 = hp2 - 24
-            dano2 = false
-            }
-            
-            if(armas != inimigo4 - 40 && armas != inimigo4 - 10 && armas != inimigo4 - 20 && armas != inimigo4 - 30 && armas != inimigo4 - 50){
-            dano2 = true
-        }
+    function colisao(){
 
-        if (x == inimigo5 && y == inimigo15){    
-            if(hp > 0 && dano == true){
-                hp = hp - 24
-                dano = false
-            }     
-        }
-        if(x != inimigo5){
-            dano = true
-        }
-        
-        if(hp2 > 0 && (armas == inimigo5 - 40 || armas == inimigo5 - 10 || armas == inimigo5 - 20 || armas == inimigo5 - 30 || armas == inimigo5 - 50) && dano2 == true){
-            hp2 = hp2 - 24
-            dano2 = false
-            }
-            
-            if(armas != inimigo5 - 40 && armas != inimigo5 - 10 && armas != inimigo5 - 20 && armas != inimigo5 - 30 && armas != inimigo5 - 50){
-            dano2 = true
-        }
+        esqueletinho1();
+        esqueletinho2();
 
-        if (x == inimigo6 && y == inimigo16){    
-            if(hp > 0 && dano == true){
-                hp = hp - 24
-                dano = false
-            }     
-        }
-        if(x != inimigo6){
-            dano = true
-        }
-        
-        if(hp2 > 0 && (armas == inimigo6 - 40 || armas == inimigo6 - 10 || armas == inimigo6 - 20 || armas == inimigo6 - 30 || armas == inimigo6 - 50) && dano2 == true){
-            hp2 = hp2 - 24
-            dano2 = false
-            }
-            
-            if(armas != inimigo6 - 40 && armas != inimigo6 - 10 && armas != inimigo6 - 20 && armas != inimigo6 - 30 && armas != inimigo6 - 50){
-            dano2 = true
-        }
 
-        if (x == inimigo7 && y == inimigo17){    
-            if(hp > 0 && dano == true){
-                hp = hp - 24
-                dano = false
-            }     
-        }
-        if(x != inimigo7){
-            dano=true
-        }
+        // if (x == inimigo2 && y == inimigo12){    
+        //     if(hp > 0 && dano == true){
+        //         hp = hp - 24
+        //         dano = false
+        //     }     
+        // }
+        // if(x != inimigo2){
+        //     dano = true
+        // }
         
-        if(hp2 > 0 && (armas == inimigo7 - 40 || armas == inimigo7 - 10 || armas == inimigo7 - 20 || armas == inimigo7 - 30 || armas == inimigo7 - 50) && dano2 == true){
-            hp2 = hp2 - 24
-            dano2 = false
-            }
+        // if(hp2 > 0 && (armas == inimigo2 - 40 || armas == inimigo2 - 10 || armas == inimigo2 - 20 || armas == inimigo2 - 30 || armas == inimigo2 - 50) && dano2 == true){
+        //     hp2 = hp2 - 24
+        //     dano2 = false
+        //     }
             
-            if(armas != inimigo7 - 40 && armas != inimigo7 - 10 && armas != inimigo7 - 20 && armas != inimigo7 - 30 && armas != inimigo7 - 50){
-            dano2 = true
-        }
+        //     if(armas != inimigo2 - 40 && armas != inimigo2 - 10 && armas != inimigo2 - 20 && armas != inimigo2 - 30 && armas != inimigo2 - 50){
+        //     dano2 = true
+        // }
 
-        if (x == inimigo8 && y == inimigo18){    
-            if(hp > 0 && dano == true){
-                hp = hp - 24
-                dano = false
-            }     
-        }
-        if(x != inimigo8){
-            dano = true
-        }
+        // if (x == inimigo3 && y == inimigo13){    
+        //     if(hp > 0 && dano == true){
+        //         hp = hp - 24
+        //         dano = false
+        //     }     
+        // }
+        // if(x != inimigo3){
+        //     dano = true
+        // }
         
-        if(hp2 > 0 && (armas == inimigo8 - 40 || armas == inimigo8 - 10 || armas == inimigo8 - 20 || armas == inimigo8 - 30 || armas == inimigo8 - 50) && dano2 == true){
-            hp2 = hp2 - 24
-            dano2 = false
-            }
+        // if(hp2 > 0 && (armas == inimigo3 - 40 || armas == inimigo3 - 10 || armas == inimigo3 - 20 || armas == inimigo3 - 30 || armas == inimigo3 - 50) && dano2 == true){
+        //     hp2 = hp2 - 24
+        //     dano2 = false
+        //     }
             
-            if(armas != inimigo8 - 40 && armas != inimigo8 - 10 && armas != inimigo8 - 20 && armas != inimigo8 - 30 && armas != inimigo8 - 50){
-            dano2 = true
-        }
+        //     if(armas != inimigo3 - 40 && armas != inimigo3 - 10 && armas != inimigo3 - 20 && armas != inimigo3 - 30 && armas != inimigo3 - 50){
+        //     dano2 = true
+        // }
 
-        if (x == inimigo9 && y == inimigo19){    
-            if(hp > 0 && dano == true){
-                hp = hp - 24
-                dano = false
-            }     
-        }
-        if(x != inimigo9){
-            dano = true
-        }
+        // if (x == inimigo4 && y == inimigo14){    
+        //     if(hp > 0 && dano == true){
+        //         hp = hp - 24
+        //         dano = false
+        //     }     
+        // }
+        // if(x != inimigo4){
+        //     dano = true
+        // }
         
-        if(hp2 > 0 && (armas == inimigo9 - 40 || armas == inimigo9 - 10 || armas == inimigo9 - 20 || armas == inimigo9 - 30 || armas == inimigo9 - 50) && dano2 == true){
-            hp2 = hp2 - 24
-            dano2 = false
-            }
+        // if(hp2 > 0 && (armas == inimigo4 - 40 || armas == inimigo4 - 10 || armas == inimigo4 - 20 || armas == inimigo4 - 30 || armas == inimigo4 - 50) && dano2 == true){
+        //     hp2 = hp2 - 24
+        //     dano2 = false
+        //     }
             
-            if(armas != inimigo9 - 40 && armas != inimigo9 - 10 && armas != inimigo9 - 20 && armas != inimigo9 - 30 && armas != inimigo9 - 50){
-            dano2 = true
-        }
+        //     if(armas != inimigo4 - 40 && armas != inimigo4 - 10 && armas != inimigo4 - 20 && armas != inimigo4 - 30 && armas != inimigo4 - 50){
+        //     dano2 = true
+        // }
+
+        // if (x == inimigo5 && y == inimigo15){    
+        //     if(hp > 0 && dano == true){
+        //         hp = hp - 24
+        //         dano = false
+        //     }     
+        // }
+        // if(x != inimigo5){
+        //     dano = true
+        // }
+        
+        // if(hp2 > 0 && (armas == inimigo5 - 40 || armas == inimigo5 - 10 || armas == inimigo5 - 20 || armas == inimigo5 - 30 || armas == inimigo5 - 50) && dano2 == true){
+        //     hp2 = hp2 - 24
+        //     dano2 = false
+        //     }
+            
+        //     if(armas != inimigo5 - 40 && armas != inimigo5 - 10 && armas != inimigo5 - 20 && armas != inimigo5 - 30 && armas != inimigo5 - 50){
+        //     dano2 = true
+        // }
+
+        // if (x == inimigo6 && y == inimigo16){    
+        //     if(hp > 0 && dano == true){
+        //         hp = hp - 24
+        //         dano = false
+        //     }     
+        // }
+        // if(x != inimigo6){
+        //     dano = true
+        // }
+        
+        // if(hp2 > 0 && (armas == inimigo6 - 40 || armas == inimigo6 - 10 || armas == inimigo6 - 20 || armas == inimigo6 - 30 || armas == inimigo6 - 50) && dano2 == true){
+        //     hp2 = hp2 - 24
+        //     dano2 = false
+        //     }
+            
+        //     if(armas != inimigo6 - 40 && armas != inimigo6 - 10 && armas != inimigo6 - 20 && armas != inimigo6 - 30 && armas != inimigo6 - 50){
+        //     dano2 = true
+        // }
+
+        // if (x == inimigo7 && y == inimigo17){    
+        //     if(hp > 0 && dano == true){
+        //         hp = hp - 24
+        //         dano = false
+        //     }     
+        // }
+        // if(x != inimigo7){
+        //     dano=true
+        // }
+        
+        // if(hp2 > 0 && (armas == inimigo7 - 40 || armas == inimigo7 - 10 || armas == inimigo7 - 20 || armas == inimigo7 - 30 || armas == inimigo7 - 50) && dano2 == true){
+        //     hp2 = hp2 - 24
+        //     dano2 = false
+        //     }
+            
+        //     if(armas != inimigo7 - 40 && armas != inimigo7 - 10 && armas != inimigo7 - 20 && armas != inimigo7 - 30 && armas != inimigo7 - 50){
+        //     dano2 = true
+        // }
+
+        // if (x == inimigo8 && y == inimigo18){    
+        //     if(hp > 0 && dano == true){
+        //         hp = hp - 24
+        //         dano = false
+        //     }     
+        // }
+        // if(x != inimigo8){
+        //     dano = true
+        // }
+        
+        // if(hp2 > 0 && (armas == inimigo8 - 40 || armas == inimigo8 - 10 || armas == inimigo8 - 20 || armas == inimigo8 - 30 || armas == inimigo8 - 50) && dano2 == true){
+        //     hp2 = hp2 - 24
+        //     dano2 = false
+        //     }
+            
+        //     if(armas != inimigo8 - 40 && armas != inimigo8 - 10 && armas != inimigo8 - 20 && armas != inimigo8 - 30 && armas != inimigo8 - 50){
+        //     dano2 = true
+        // }
+
+        // if (x == inimigo9 && y == inimigo19){    
+        //     if(hp > 0 && dano == true){
+        //         hp = hp - 24
+        //         dano = false
+        //     }     
+        // }
+        // if(x != inimigo9){
+        //     dano = true
+        // }
+        
+        // if(hp2 > 0 && (armas == inimigo9 - 40 || armas == inimigo9 - 10 || armas == inimigo9 - 20 || armas == inimigo9 - 30 || armas == inimigo9 - 50) && dano2 == true){
+        //     hp2 = hp2 - 24
+        //     dano2 = false
+        //     }
+            
+        //     if(armas != inimigo9 - 40 && armas != inimigo9 - 10 && armas != inimigo9 - 20 && armas != inimigo9 - 30 && armas != inimigo9 - 50){
+        //     dano2 = true
+        // }
 
             if(hp2 == 0){
                 dano = false;
@@ -609,14 +625,22 @@ window.onload = function(){
                 dano2 = false;
                 document.location.reload(true)
             }
-        }
+    }
+    
     function barraHp(){
 
         //barra de vida fundo do heroi
         ctx.fillStyle = 'white';
         ctx.beginPath();
         ctx.rect(x - 1, y - 77, 100, 16)
-        ctx.rect(890, 10, 100, 22)
+        ctx.rect(obsx - 2, obsy - 77, 100, 22)//AQUI SETA A BARRINHA BRANCA DE CADA INIMIGO
+        ctx.closePath();
+        ctx.fill();
+
+        ctx.fillStyle = 'white';
+        ctx.beginPath();
+        ctx.rect(x - 1, y - 77, 100, 16)
+        ctx.rect(inimigo1 - 2, inimigo11 - 77, 100, 22)//AQUI SETA A BARRINHA BRANCA DE CADA INIMIGO
         ctx.closePath();
         ctx.fill();
 
@@ -630,7 +654,13 @@ window.onload = function(){
         //barra de vida do inimiga
         ctx.fillStyle = 'red';
         ctx.beginPath();
-        ctx.rect(892, 12, hp2, 18)
+        ctx.rect(obsx, obsy - 75, hp2, 18)//AQUI ESTÁ POSICIONADA A BARRA DE VIDA DO INIMIGO obsx && obsy
+        ctx.closePath();
+        ctx.fill();
+
+        ctx.fillStyle = 'red';
+        ctx.beginPath();
+        ctx.rect(inimigo1, inimigo11 - 75, hp3, 18)//AQUI ESTÁ POSICIONADA A BARRA DE VIDA DO INIMIGO obsx && obsy
         ctx.closePath();
         ctx.fill();
     }
