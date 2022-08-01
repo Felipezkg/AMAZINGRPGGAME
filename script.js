@@ -27,14 +27,14 @@ window.onload = function(){
     var img = eroi
 
     // Váriavel que define a posição do Personagem.
-    var x = 240;  // Horizontal.
+    var x = 440;  // Horizontal.
     var y = 355; // Vertical.
 
     // Váriavel que define a posição do Inimigo.
     var obsx = 650; //Horizontal.
-    var obsy = 665; //Vertical.
-    var inimigo1 = 253;
-    var inimigo11 = 680;
+    var obsy = 300; //Vertical.
+    var inimigo1 = 1400;
+    var inimigo11 = 180;
     // var inimigo2 = 720;
     // var inimigo12 = 720;
     // var inimigo3 = 830;
@@ -62,7 +62,8 @@ window.onload = function(){
     var baixo = 40
     var baixoA = 83
     var golpe = 67
-    var armas = 1000
+    var armasx = 1000
+    var armasy = 1000
     var espaco = 32
     var pulo = false
     var contador = 0
@@ -91,7 +92,7 @@ window.onload = function(){
     var dano2 = true
     var dano3 = true
     
-    var animay = 0
+    var animay = 2
     var animax = 0
     //contador da animacao
     var cont = 0
@@ -159,7 +160,8 @@ window.onload = function(){
         }
 
         if(evento.keyCode == golpe){
-            armas = x
+            armasx = x
+            armasy=y
             animaG = true
         } 
         if(evento.keyCode == espaco){
@@ -352,9 +354,9 @@ window.onload = function(){
     }
 
     function Personagem(posX, posY) {
-        ctx.drawImage(img,sheroi.animacaox[animax],sheroi.animacaoy[animay],sheroi.largura,sheroi.altura,x,y-75,100,100)
-        ctx.drawImage(espada,sheroi.animacaox[animax],sheroi.animacaoy[animay],sheroi.largura,sheroi.altura,x,y-75,100,100)
-        ctx.drawImage(cabeca,sheroi.animacaox[animax],sheroi.animacaoy[animay],64,64,posX,posY-75,100,100)
+        ctx.drawImage(img,sheroi.animacaox[animax],sheroi.animacaoy[animay],sheroi.largura,sheroi.altura,x,y,100,100)
+        ctx.drawImage(espada,sheroi.animacaox[animax],sheroi.animacaoy[animay],sheroi.largura,sheroi.altura,x,y,100,100)
+        ctx.drawImage(cabeca,sheroi.animacaox[animax],sheroi.animacaoy[animay],64,64,posX,posY,100,100)
     }
 
     // Quantidade de pixel que o objeto se movimenta.
@@ -368,8 +370,8 @@ window.onload = function(){
     // Função do Pano de Fundo.
     function background() {
         let fundo = new Image()
-        fundo.src = 'fundo.png'
-        ctx.drawImage(fundo, 0, 00, 4096+1000, 4096+1000)
+        fundo.src = 'mapa1.png'
+        ctx.drawImage(fundo, 0, -1200,2500, 1800)
     }
     // Função do Personagem Principal (Herói).
     // Função que determina pra onde o objeto irá se movimentar.
@@ -395,15 +397,16 @@ window.onload = function(){
             }
 
             if(evento.keyCode == golpe){
-                armas=1000
+                armasx=1000
+                armasy =1000
                 camx=0
             }
     }
 
     // Função que cria um Inimigo.....
     function inimigo() {
-        ctx.drawImage(esqueleto,sheroi.animacaox[0],sheroi.animacaoy[1],sheroi.largura,sheroi.altura,obsx,obsy-75,100,100)
-        ctx.drawImage(esqueleto,sheroi.animacaox[0],sheroi.animacaoy[1],sheroi.largura,sheroi.altura,inimigo1,inimigo11-75,100,100)
+        ctx.drawImage(esqueleto,sheroi.animacaox[0],sheroi.animacaoy[1],sheroi.largura,sheroi.altura,obsx,obsy,100,100)
+        ctx.drawImage(esqueleto,sheroi.animacaox[0],sheroi.animacaoy[1],sheroi.largura,sheroi.altura,inimigo1,inimigo11,100,100)
         // ctx.drawImage(esqueleto,sheroi.animacaox[0],sheroi.animacaoy[1],sheroi.largura,sheroi.altura,inimigo2,inimigo12-75,100,100)
         // ctx.drawImage(esqueleto,sheroi.animacaox[0],sheroi.animacaoy[1],sheroi.largura,sheroi.altura,inimigo3,inimigo13-75,100,100)
         // ctx.drawImage(esqueleto,sheroi.animacaox[0],sheroi.animacaoy[1],sheroi.largura,sheroi.altura,inimigo4,inimigo14-75,100,100)
@@ -426,12 +429,12 @@ window.onload = function(){
             dano = true
         }
         
-        if(hp2 > 0 && (armas == obsx-40 || armas == obsx-10 || armas==obsx-20 || armas==obsx-30 || armas==obsx-50) && dano2 == true){
+        if(hp2 > 0 && (armasx == obsx || armasx == obsx-5 || armasx==obsx-10 || armasx==obsx-15 || armasx==obsx-20|| armasx == obsx+5|| armasx == obsx+10|| armasx == obsx+15|| armasx == obsx+20|| armasx==obsx-25|| armasx==obsx-30) && (armasy==obsy||armasy==obsy-5||armasy==obsy-10||armasy==obsy-15||armasy==obsy-20||armasy==obsy-25||armasy==obsy-30||armasy==obsy+5||armasy==obsy+10||armasy==obsy+15||armasy==obsy+20)&&dano2 == true){
             hp2 = hp2 - 24
             dano2 = false
             }
             
-            if(armas != obsx - 40 && armas != obsx - 10 && armas != obsx - 20 && armas != obsx -30 && armas != obsx - 50){
+            if(armasx != obsx && armasx != obsx -5 && armasx != obsx -10 && armasx != obsx -15 && armasx != obsx - 20){
             dano2 = true
         }
     }
@@ -448,12 +451,12 @@ window.onload = function(){
                 dano=true
             }
         
-        if(hp3 > 0 && (armas == inimigo1 - 40 || armas == inimigo1 - 10 || armas == inimigo1 - 20 || armas == inimigo1 - 30 || armas == inimigo1 - 50) && dano3 == true){
+        if(hp3 > 0 && (armasx == inimigo1 -5 || armasx == inimigo1 - 10 || armasx == inimigo1 - 15 || armasx == inimigo1 - 20 || armasx == inimigo1 - 25|| armasx == inimigo1 - 30|| armasx == inimigo1|| armasx == inimigo1 + 5|| armasx == inimigo1+ 10|| armasx == inimigo1 + 15|| armasx == inimigo1 + 20) &&(armasy==inimigo11+5||armasy==inimigo11+10||armasy==inimigo11+15||armasy==inimigo11+20||armasy==inimigo11||armasy==inimigo11-5||armasy==inimigo11-10||armasy==inimigo11-15||armasy==inimigo11-20||armasy==inimigo11-25||armasy==inimigo11-30)&& dano3 == true){
             hp3 = hp3 - 24
             dano3 = false
             }
             
-            if(armas != inimigo1 - 40 && armas != inimigo1 - 10 && armas != inimigo1 - 20 && armas != inimigo1 - 30 && armas != inimigo1 - 50){
+            if(armasx != inimigo1 - 40 && armasx != inimigo1 - 10 && armasx != inimigo1 - 20 && armasx != inimigo1 - 30 && armasx != inimigo1 - 50){
             dano3 = true
         }
     }
