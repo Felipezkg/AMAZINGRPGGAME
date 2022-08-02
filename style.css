@@ -36,12 +36,14 @@ body{
 }
 
 .overlay a{
-    padding: 8px;
+    margin-top: 5%;
     text-decoration: none;
     color:#14d614;
     display: block;
-    font-size: 34px;
+    font-size: 28px;
     transition: 0.3s;
+    text-align: left;
+    margin-left: 20px;
 }
 
 .overlay a:hover, .overlay a:focus{
@@ -64,3 +66,4 @@ body{
 
     }
 } 
+
