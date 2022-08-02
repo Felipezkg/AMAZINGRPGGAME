@@ -20,8 +20,14 @@ body{
 }
 
 .nav-button i {
-    color: #0ae93a;
+    color: #362504;
 }
+
+.overlay-content {
+    
+}
+
+
 
 .overlay{
     width: 0%;
@@ -38,16 +44,16 @@ body{
 .overlay a{
     margin-top: 5%;
     text-decoration: none;
-    color:#14d614;
+    color:#664709;
     display: block;
     font-size: 28px;
     transition: 0.3s;
-    text-align: left;
+    text-align: center;
     margin-left: 20px;
 }
 
 .overlay a:hover, .overlay a:focus{
-    color:#f0d8d8;
+    color:#d3bc8d;
 }
 
 .overlay .closebtn {
