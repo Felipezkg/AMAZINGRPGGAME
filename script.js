@@ -367,7 +367,7 @@ window.onload = function(){
     document.addEventListener("keyup",combate);
 
 
-    // Função do Pano de Fundo.
+    // Função do Plano de Fundo.
     function background() {
         let fundo = new Image()
         fundo.src = 'mapa1.png'
@@ -403,7 +403,7 @@ window.onload = function(){
             }
     }
 
-    // Função que cria um Inimigo.....
+    // Função que DESENHA e CRIA um Inimigo.....
     function inimigo() {
         ctx.drawImage(esqueleto,sheroi.animacaox[0],sheroi.animacaoy[1],sheroi.largura,sheroi.altura,obsx,obsy,100,100)
         ctx.drawImage(esqueleto,sheroi.animacaox[0],sheroi.animacaoy[1],sheroi.largura,sheroi.altura,inimigo1,inimigo11,100,100)
@@ -441,7 +441,7 @@ window.onload = function(){
 
     function esqueletinho2(){
 
-        if (x == inimigo1 && y == inimigo11){    
+        if (x == inimigo1 && y == inimigo11){
             if(hp > 0 && dano == true){
                 hp = hp - 24
                 dano = false
@@ -635,35 +635,35 @@ window.onload = function(){
         //barra de vida fundo do heroi
         ctx.fillStyle = 'white';
         ctx.beginPath();
-        ctx.rect(x - 1, y - 77, 100, 16)
-        ctx.rect(obsx - 2, obsy - 77, 100, 22)//AQUI SETA A BARRINHA BRANCA DE CADA INIMIGO
+        ctx.rect(x - 1, y - 17, 100, 16)
+        ctx.rect(obsx - 2, obsy - 17, 100, 22)//AQUI SETA A BARRINHA BRANCA DE CADA INIMIGO
         ctx.closePath();
         ctx.fill();
 
         ctx.fillStyle = 'white';
         ctx.beginPath();
-        ctx.rect(x - 1, y - 77, 100, 16)
-        ctx.rect(inimigo1 - 2, inimigo11 - 77, 100, 22)//AQUI SETA A BARRINHA BRANCA DE CADA INIMIGO
+        // ctx.rect(x - 1, y - 77, 100, 16)
+        ctx.rect(inimigo1 - 2, inimigo11 - 17, 100, 22)//AQUI SETA A BARRINHA BRANCA DE CADA INIMIGO
         ctx.closePath();
         ctx.fill();
 
         //barra de vida do heroi
         ctx.fillStyle = 'green';
         ctx.beginPath();
-        ctx.rect(x + 1, y - 75,hp, 12)
+        ctx.rect(x + 1, y - 15,hp, 12)
         ctx.closePath();
         ctx.fill();
         
         //barra de vida do inimiga
         ctx.fillStyle = 'red';
         ctx.beginPath();
-        ctx.rect(obsx, obsy - 75, hp2, 18)//AQUI ESTÁ POSICIONADA A BARRA DE VIDA DO INIMIGO obsx && obsy
+        ctx.rect(obsx, obsy - 15, hp2, 18)//AQUI ESTÁ POSICIONADA A BARRA DE VIDA DO INIMIGO obsx && obsy
         ctx.closePath();
         ctx.fill();
 
         ctx.fillStyle = 'red';
         ctx.beginPath();
-        ctx.rect(inimigo1, inimigo11 - 75, hp3, 18)//AQUI ESTÁ POSICIONADA A BARRA DE VIDA DO INIMIGO obsx && obsy
+        ctx.rect(inimigo1, inimigo11 - 15, hp3, 18)//AQUI ESTÁ POSICIONADA A BARRA DE VIDA DO INIMIGO obsx && obsy
         ctx.closePath();
         ctx.fill();
     }
