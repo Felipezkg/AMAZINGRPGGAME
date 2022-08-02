@@ -139,11 +139,13 @@ window.onload = function(){
     function Movimento(evento) {
 
         if (evento.keyCode == cima || evento.keyCode == cimaA) { 
-            andarCima=true
+            andarCima = true;
+            andarBaixo = false;
             camy = 5
 
         }else if (evento.keyCode == baixo || evento.keyCode == baixoA) {
-            andarBaixo = true
+            andarBaixo = true;
+            andarCima = false;
             camy =- 5
 
         }else if (evento.keyCode == esquerda || evento.keyCode == esquerdaA) {
@@ -170,7 +172,7 @@ window.onload = function(){
         }
     }
 
-        function movimentacao(){
+    function movimentacao(){
             if (andarCima == true){
                 animay = 0 
                 y = y - 5
@@ -355,8 +357,11 @@ window.onload = function(){
 
     function Personagem(posX, posY) {
         ctx.drawImage(img,sheroi.animacaox[animax],sheroi.animacaoy[animay],sheroi.largura,sheroi.altura,x,y,100,100)
-        ctx.drawImage(espada,sheroi.animacaox[animax],sheroi.animacaoy[animay],sheroi.largura,sheroi.altura,x,y,100,100)
         ctx.drawImage(cabeca,sheroi.animacaox[animax],sheroi.animacaoy[animay],64,64,posX,posY,100,100)
+
+        if(animaG == true){
+            ctx.drawImage(espada,sheroi.animacaox[animax],sheroi.animacaoy[animay],sheroi.largura,sheroi.altura,x,y,100,100)
+        }
     }
 
     // Quantidade de pixel que o objeto se movimenta.
