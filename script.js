@@ -442,6 +442,11 @@ window.onload = function(){
             if(armasx != obsx && armasx != obsx -5 && armasx != obsx -10 && armasx != obsx -15 && armasx != obsx - 20){
             dano2 = true
         }
+        if(hp2 == 0 ){
+            obsx = 2000
+            obsy = 1009
+        }
+        
     }
 
     function esqueletinho2(){
@@ -463,6 +468,10 @@ window.onload = function(){
             
             if(armasx != inimigo1 - 40 && armasx != inimigo1 - 10 && armasx != inimigo1 - 20 && armasx != inimigo1 - 30 && armasx != inimigo1 - 50){
             dano3 = true
+        }
+        if(hp3 == 0 ){
+            inimigo1 = 2000
+            inimigo11 = 1009
         }
     }
 
