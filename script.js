@@ -1,7 +1,13 @@
-window.onload = function(){
 
     const canvas = document.getElementById("canvas")
     const ctx = canvas.getContext('2d')
+    
+    var bau= new Image()
+    bau.src = 'baus.png'
+
+    var fundo = new Image()
+    fundo.src = 'mapa1.png'
+
     var eroi = new Image()
     eroi.src ='corpo.png'
 
@@ -23,12 +29,19 @@ window.onload = function(){
     var espada = new Image()
     espada.src = 'espada.png'
 
+
+    //determina posicao do golpe
+    var posicaoDoGolpe = false
+    //setar a possicao do mapa na tela , Um "alinhador"
+    var mapax = 0
+    var mapay= -1200
+
     //variavel que determina qual imagem sera exibida na tela
     var img = eroi
 
     // Váriavel que define a posição do Personagem.
     var x = 440;  // Horizontal.
-    var y = 355; // Vertical.
+    var y = 300; // Vertical.
 
     // Váriavel que define a posição do Inimigo.
     var obsx = 650; //Horizontal.
@@ -100,28 +113,43 @@ window.onload = function(){
     var animaG = false
     // Função CENTRAL do Script. Tudo que for puxado na Atualização de Tela terá que ser colocado aqui.
     function main() {
+        //mudar mapa
+        
+        mudarmapa()
         
         // Função do Pano de Fundo.
         background();
         // Função do Personagem(Herói).
+        baus()
         cam()
         Personagem(x, y, 20);
         // Função do Inimigo.
         inimigo(obsx, obsy, 20);
         inimigo(inimigo1, inimigo11, 20);
-        // inimigo(inimigo2, inimigo12, 20);
-        // inimigo(inimigo3, inimigo13, 20);
-        // inimigo(inimigo4, inimigo14, 20);
-        // inimigo(inimigo5, inimigo15, 20);
-        // inimigo(inimigo6, inimigo16, 20);
-        // inimigo(inimigo7, inimigo17, 20);
-        // inimigo(inimigo8, inimigo18, 20);
-        // inimigo(inimigo9, inimigo19, 20);
         colisao()
         
         //que chama o jogo em 60fps
         requestAnimationFrame(main)
+
+        
     }
+    function baus(){
+        ctx.drawImage(bau,32,0,sheroi.largura-32,sheroi.altura-32,355,230,54,44)
+    }
+
+    //funcao que muda de mapa 
+    function mudarmapa(){
+
+        if((x>=2140&&x<=2200)&&y<=-1000&&y>=-1095){
+            fundo.src = 'mapa2.png'
+            mapax=2000
+        } else if((x>=2130&&x<=2190)&&(y<-430&&y>=-525)){
+            fundo.src = 'mapa3.png'
+
+        }
+
+    }
+    //funcao que atuliza a pisicao da camera usando o X e Y como parametro.
     function cam (){
     ctx.translate(camx,  camy)
         movimentacao()
@@ -136,6 +164,7 @@ window.onload = function(){
         }
 
     }
+    //funcao que le as teclas 
     function Movimento(evento) {
 
         if (evento.keyCode == cima || evento.keyCode == cimaA) { 
@@ -157,11 +186,16 @@ window.onload = function(){
         }else if (evento.keyCode == direita || evento.keyCode == direitaA) {
             ponto = false
             andarDireira = true
-            andarEsquerda = false
             camx =- 5
         }
 
         if(evento.keyCode == golpe){
+            camx=false
+            camy=false
+            andarBaixo=false
+            andarCima=false
+            andarDireira=false
+            andarEsquerda=false
             armasx = x
             armasy=y
             animaG = true
@@ -172,8 +206,10 @@ window.onload = function(){
         }
     }
 
+    //funcao que escolhe a imagem da movimentacao(animacao de caminhada do personagem).
     function movimentacao(){
             if (andarCima == true){
+                posicaoDoGolpe=0
                 animay = 0 
                 y = y - 5
                     
@@ -210,8 +246,9 @@ window.onload = function(){
             }
 
         if (andarBaixo == true){
-            animay = 2
+            posicaoDoGolpe=2
             y = y + 5
+            animay=2
             
             if(cont==10){
                 animax=1
@@ -247,12 +284,12 @@ window.onload = function(){
             if(animaG == true){
                 cabeca = cabelo2
                 img = golher
-                animay = 1
+                animay = posicaoDoGolpe
             
             if(conta==2){
                 animax=2
-                andarDireira=false
-                andarEsquerda=false
+                // andarDireira=false
+                // andarEsquerda=false
 
             }else if(conta==4){
                 animax=3
@@ -276,6 +313,7 @@ window.onload = function(){
         }
 
         if (andarEsquerda==true){
+            posicaoDoGolpe=1
                 animay=1
                 x=x-5
             
@@ -309,6 +347,7 @@ window.onload = function(){
                 cont++
         }
             if (andarDireira==true){
+                posicaoDoGolpe=3
                     animay=3
                     x=x+5
 
@@ -345,7 +384,7 @@ window.onload = function(){
         }
     }
 
-    //obejto pessoa
+    //obejto do heroi
     var sheroi = {
         posicaox: x,
         posicaoy: y,
@@ -354,7 +393,7 @@ window.onload = function(){
         altura:64,
         largura:64,
     }
-
+    //funcao que desenha personagem
     function Personagem(posX, posY) {
         ctx.drawImage(img,sheroi.animacaox[animax],sheroi.animacaoy[animay],sheroi.largura,sheroi.altura,x,y,100,100)
         ctx.drawImage(cabeca,sheroi.animacaox[animax],sheroi.animacaoy[animay],64,64,posX,posY,100,100)
@@ -374,30 +413,33 @@ window.onload = function(){
 
     // Função do Plano de Fundo.
     function background() {
-        let fundo = new Image()
-        fundo.src = 'mapa1.png'
-        ctx.drawImage(fundo, 0, -1200,2500, 1800)
+       
+        
+        ctx.drawImage(fundo, mapax, mapay,2500, 1800)
     }
-    // Função do Personagem Principal (Herói).
-    // Função que determina pra onde o objeto irá se movimentar.
+    //funcao que le quando soltamos a tecla.
     function combate(evento){
             if(evento.keyCode ==esquerda || evento.keyCode == esquerdaA){
                 camx=0
                 andarEsquerda = false
-                animay=2
+                animay=1
                 cont =0
                 animax = 0
             }else if(evento.keyCode==direita || evento.keyCode == direitaA){
                 camx=0
-                animay=2
+                animay=3
                 andarDireira = false
                 cont=0
                 animax = 0
             }else if(evento.keyCode==cima || evento.keyCode == cimaA){
+                animay=0
+                animax=1
                 andarCima=false
                 camy=0
             }else if(evento.keyCode==baixo || evento.keyCode == baixoA){
                 andarBaixo=false
+                animay=2
+                animax=0
                 camy=0
             }
 
@@ -408,7 +450,7 @@ window.onload = function(){
             }
     }
 
-    // Função que DESENHA e CRIA um Inimigo.....
+    // Função que DESENHA Inimigo.....
     function inimigo() {
         ctx.drawImage(esqueleto,sheroi.animacaox[0],sheroi.animacaoy[1],sheroi.largura,sheroi.altura,obsx,obsy,100,100)
         ctx.drawImage(esqueleto,sheroi.animacaox[0],sheroi.animacaoy[1],sheroi.largura,sheroi.altura,inimigo1,inimigo11,100,100)
@@ -434,12 +476,12 @@ window.onload = function(){
             dano = true
         }
         
-        if(hp2 > 0 && (armasx == obsx || armasx == obsx-5 || armasx==obsx-10 || armasx==obsx-15 || armasx==obsx-20|| armasx == obsx+5|| armasx == obsx+10|| armasx == obsx+15|| armasx == obsx+20|| armasx==obsx-25|| armasx==obsx-30) && (armasy==obsy||armasy==obsy-5||armasy==obsy-10||armasy==obsy-15||armasy==obsy-20||armasy==obsy-25||armasy==obsy-30||armasy==obsy+5||armasy==obsy+10||armasy==obsy+15||armasy==obsy+20)&&dano2 == true){
+        if(hp2 > 0 && (armasx == obsx || armasx == obsx-5 || armasx==obsx-10 || armasx==obsx-15 || armasx==obsx-20|| armasx == obsx-25|| armasx == obsx-30|| armasx == obsx-35|| armasx == obsx-40|| armasx==obsx-45|| armasx==obsx-50 || armasx == obsx+5 || armasx==obsx+10 || armasx==obsx+15 || armasx==obsx+20|| armasx == obsx+25|| armasx == obsx+30|| armasx == obsx+35|| armasx == obsx+40|| armasx==obsx+45|| armasx==obsx+50) && (armasy==obsy||armasy==obsy-5||armasy==obsy-10||armasy==obsy-15||armasy==obsy-20||armasy==obsy-25||armasy==obsy-30||armasy==obsy-35||armasy==obsy-40||armasy==obsy-45||armasy==obsy-50||armasy==obsy-55||armasy==obsy+5||armasy==obsy+10||armasy==obsy+15||armasy==obsy+20||armasy==obsy+25||armasy==obsy+30||armasy==obsy+35||armasy==obsy+40||armasy==obsy+45||armasy==obsy+50||armasy==obsy+55)&&dano2 == true){
             hp2 = hp2 - 24
             dano2 = false
             }
             
-            if(armasx != obsx && armasx != obsx -5 && armasx != obsx -10 && armasx != obsx -15 && armasx != obsx - 20){
+            if(armasx != obsx && armasx != obsx -5 && armasx != obsx -10 && armasx != obsx -15 && armasx != obsx - 20&& armasx != obsx - 25&& armasx != obsx - 30&& armasx != obsx - 35&& armasx != obsx - 40&& armasx != obsx - 45&& armasx != obsx - 50&& armasx != obsx - 55){
             dano2 = true
         }
         if(hp2 == 0 ){
@@ -478,7 +520,7 @@ window.onload = function(){
 
 
     function colisao(){
-
+       
         esqueletinho1();
         esqueletinho2();
 
@@ -685,7 +727,7 @@ window.onload = function(){
     // Determina a taxa de atualização da Tela e Puxa a Função Central.
 
     requestAnimationFrame(main)
-}
+
 
 // descrição do trabalho
 // função que abre a descrição
