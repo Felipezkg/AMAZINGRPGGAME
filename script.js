@@ -77,13 +77,8 @@
                 this.altura = 64
                 this.largura = 64
                 this.hp2 = 96
+                this.hp = function hp(obsx,obsy){
 
-                this.mostrarNaTela = function(obsx,obsy){
-
-                ctx.drawImage(esqueleto,this.animacaox[0],this.animacaoy[1],this.largura,this.altura,obsx,obsy,100,100)
-                this.hp(obsx,obsy)
-            }
-            this.hp = function hp(obsx,obsy){
 
                 ctx.fillStyle = 'white';
                 ctx.beginPath();
@@ -96,6 +91,16 @@
                 ctx.rect(obsx + 1, obsy - 15,this.hp2, 12)
                 ctx.closePath();
                 ctx.fill();
+
+            }
+            this.mostrarNaTela = function(obsx,obsy){
+
+                ctx.drawImage(esqueleto,this.animacaox[0],this.animacaoy[1],this.largura,this.altura,obsx,obsy,100,100)
+                this.hp(obsx,obsy)
+                if(armasx==obsx){
+                    this.hp2-=100
+                }
+                
             }
             this.quantidade=[]
         }
@@ -187,6 +192,7 @@
         
         //que chama o jogo em 60fps
         requestAnimationFrame(main)
+        console.log(inimigo.quantidade[0].posicaox,inimigo.quantidade[1].posicaox,inimigo.quantidade[2].posicaox,armasx)
 
         
     }
@@ -265,9 +271,17 @@
         }
     }
     function ColisaoEDano(){
-        if(armasx===obsx){
-           
+        for(i=0;i<inimigo.quantidade.length;i++){
+
+            if(armasx==inimigo.quantidade[i].hp()){
+            console.log(inimigo.quantidade[i].hp2-=24)
+
+            }
+            
+            
+
         }
+      
       
     }
 
@@ -446,22 +460,24 @@
                     
                 }
     } 
-      inimigo.quantidade.push(new Inimigo,new Inimigo,new Inimigo)
+      inimigo.quantidade.push(new Inimigo(obsx,obsy),new Inimigo(obsx,obsy),new Inimigo(obsx,obsy))
     function MostrarPersonagem() {
         for(let i=0;i<=inimigo.quantidade.length;i++){
             if(inimigo.quantidade.length>=1){
-            inimigo.mostrarNaTela(obsx,obsy)
+                inimigo.quantidade[0].mostrarNaTela(obsx=300,obsy-+00)
+                
             }
              if(inimigo.quantidade.length>=2){
-                inimigo.mostrarNaTela( obsx+300,obsy)
+                inimigo.quantidade[1].mostrarNaTela(obsx=500,obsy-100)
             }
             if(inimigo.quantidade.length>=3){
-                inimigo.mostrarNaTela( obsx+600,obsy)
+                inimigo.quantidade[2].mostrarNaTela(obsx=600,obsy+50)
 
             }
         }
 
       sheroi.mostrarNaTela(x,y)
+
         
     }
 
