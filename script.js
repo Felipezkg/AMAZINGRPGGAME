@@ -192,7 +192,7 @@
         
         //que chama o jogo em 60fps
         requestAnimationFrame(main)
-        console.log(inimigo.quantidade[0].posicaox,inimigo.quantidade[1].posicaox,inimigo.quantidade[2].posicaox,armasx)
+        //console.log(inimigo.quantidade[0].posicaox,inimigo.quantidade[1].posicaox,inimigo.quantidade[2].posicaox,armasx)
 
         
     }
@@ -480,6 +480,9 @@
 
         
     }
+    if(x == 440 && y == 300){
+        hp = hp -24
+    }
 
     // Quantidade de pixel que o objeto se movimenta.
     var taxa = 20;
@@ -529,6 +532,10 @@
             }
     }
     
+    //Tela de Gamer Over
+    if(hp == 0){
+       document.getElementById("over").style.width = '100%'
+    }
     
 
     // Determina a taxa de atualização da Tela e Puxa a Função Central.
