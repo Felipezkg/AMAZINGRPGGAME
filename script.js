@@ -7,7 +7,7 @@
     bau.src = 'baus.png'
 
     var fundo = new Image()
-    fundo.src = 'mapa1.png'
+    fundo.src = 'mapa1-certo.png'
 
     var eroi = new Image()
     eroi.src ='corpo.png'
@@ -189,6 +189,8 @@
         MovimentaCamera()
 
         MostrarPersonagem()
+
+        colisaoMapa()
         
         //que chama o jogo em 60fps
         requestAnimationFrame(main)
@@ -480,9 +482,7 @@
 
         
     }
-    if(x == 440 && y == 300){
-        hp = hp -24
-    }
+
 
     // Quantidade de pixel que o objeto se movimenta.
     var taxa = 20;
@@ -531,6 +531,59 @@
 
             }
     }
+    function colisaoMapa(){
+
+        if(x <= 5 && y <= 140 || x <= 1325 && y <= 140 || x <= 10 && y <= 380 || x <= 1550 && y >= 380) {
+            andarCima = false
+            andarEsquerda = false
+            andarBaixo = false
+            camx -= camx
+            camy -= camy
+        }
+
+        if(x >= 1545 && y >= -290){
+            andarDireira = false
+            camx -= camx
+            camy -= camy
+        }
+
+        
+
+        // if(x <= 15 && y >= 380 || x <= 15 && y >= 70){
+        //     andarEsquerda = false
+        //     camx -= camx
+        //     camy -= camy
+        // }
+
+        // if(x >= 5 && y <= 70 || x >= 310 && y <= 70){
+        //     andarCima = false
+        //     camx -= camx
+        //     camy -= camy
+        // }
+
+        // if(x >= 320 && y <= 70 || x >= 325 && y <= 140){
+        //     andarDireira = false
+        //     camx -= camx
+        //     camy -= camy
+        // }
+
+        // if(x >= 365 && y <= 145 || x <= 1325 && y <= 145){
+        //     andarCima = false
+        //     camx -= camx
+        //     camy -= camy
+        // }
+
+        // if(y < 145 && x > 1565){
+        //     andarCima = true
+        //     camx -= camx
+        //     camy -= camy
+        // }
+
+    }
+
+    colisaoMapa()
+
+
     
     //Tela de Gamer Over
     if(hp == 0){
