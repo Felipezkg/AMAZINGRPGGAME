@@ -2,6 +2,8 @@
     const canvas = document.getElementById("canvas")
     const ctx = canvas.getContext('2d')
 
+    var letras = new Image()
+    letras.src = "fonte.png"    
 
     var bau= new Image()
     bau.src = 'baus.png'
@@ -33,13 +35,14 @@
     //Classe do heroi
     class Personagens{
         constructor(x,y){
-           
+
                 this.posicaox = x
                 this.posicaoy = y
                 this.animacaox = [0,64,128,192,256,320,384,448,512]
                 this.animacaoy = [0,64,128,192]
                 this.altura = 64
                 this.largura = 64
+                this.cabeca = []
                 this.mostrarNaTela = function(x,y){
 
                 ctx.drawImage(img,this.animacaox[animax],this.animacaoy[animay],this.largura,this.altura,x,y,100,100)
@@ -67,8 +70,8 @@
         }
     }
     
-    //Classe do inimigo
-    class Inimigo{
+     //Classe do inimigo
+     class Inimigo{
         constructor(obsx,obsy){
                 this.posicaox = obsx
                 this.posicaoy = obsy
@@ -93,19 +96,68 @@
                 ctx.fill();
 
             }
-            this.mostrarNaTela = function(obsx,obsy){
+            this.mostrarNaTela = function(){
 
-                ctx.drawImage(esqueleto,this.animacaox[0],this.animacaoy[1],this.largura,this.altura,obsx,obsy,100,100)
-                this.hp(obsx,obsy)
-                if(armasx==obsx){
-                    this.hp2-=100
+                ctx.drawImage(esqueleto,this.animacaox[0],this.animacaoy[1],this.largura,this.altura,this.posicaox,this.posicaoy,100,100)
+                this.hp(this.posicaox,this.posicaoy)
+
+                     if(armasx>obsx-60&&armasx<obsx+60&&y>obsy-60&&y<obsy+60&&bateu==true){
+                    this.hp2-=14
+                    bateu= false
+                    console.log('hijbweyuhd',bateu)
                 }
+
+                
+               
+                if(armasx==1000){
+                    bateu=true
+                }
+               
                 
             }
-            this.quantidade=[]
         }
     }
+
+    class Baus {
+        constructor(posBauX,posBauY){
+                this.posicaox = posBauX
+                this.posicaoy = posBauY
+                this.animacaox = [0,64,128,192,256,320,384,448,512]
+                this.animacaoy = [0,64,128,192]
+                this.altura = 32
+                this.largura = 32
+                this.alturafonte = 28
+                this.largurafonte = 32
+               
+            this.mostrarNaTela = function(){
+
+                ctx.drawImage(bau,this.animacaox[0],this.animacaoy[0],this.largura,this.altura,this.posicaox,this.posicaoy,64,54)
+                if(x>=25&&x<=105&&y>=305&&y<=375){
+                ctx.drawImage(letras,32*4,31*4,this.alturafonte,this.largurafonte,this.posicaox+20,this.posicaoy-20,20,20)
+                
+                    
+                }
+                
+                if(x==this.posicaox){
+                    cabelo.src='capaceteandando1.png'
+                    cabelo2.src='capacetegolpe1.png'
+                    
+                }
+              
+                
+            }
+        }
+    }
+
     
+    //colicao da arma com obsx
+    var bateu = true
+    
+    //vetor de Baus
+    var baumapa= []
+    //vetor de inimigos
+    var quantidade = []
+
     //Obejtos pesonagens
     var inimigo = new Inimigo(obsx,obsy)
     var inimigo1= new Inimigo
@@ -191,15 +243,20 @@
         MostrarPersonagem()
 
         colisaoMapa()
+
+
         
         //que chama o jogo em 60fps
         requestAnimationFrame(main)
         //console.log(inimigo.quantidade[0].posicaox,inimigo.quantidade[1].posicaox,inimigo.quantidade[2].posicaox,armasx)
+        // console.log("meu x:",x,'meu y:',y,"inimigo x:",300,"inimigo y:",200)
 
-        
+        ////////////////////////////////////250 -300 =50px ////////cxaaa
     }
+    baumapa.push(new Baus(75,400))
     function MostrarBaus(){
-        ctx.drawImage(bau,32,0,sheroi.largura-32,sheroi.altura-32,355,230,54,44)
+        baumapa[0].mostrarNaTela()
+
     }
 
     //funcao que muda de mapa 
@@ -265,6 +322,7 @@
             armasx = x
             armasy=y
             animaG = true
+            console.log(golpe)
         } 
         if(evento.keyCode == espaco){
             pulo = true
@@ -273,9 +331,9 @@
         }
     }
     function ColisaoEDano(){
-        for(i=0;i<inimigo.quantidade.length;i++){
+        for(i=0;i<quantidade.length-1;i++){
 
-            if(armasx==inimigo.quantidade[i].hp()){
+            if(armasx==quantidade[i].hp()){
             console.log(inimigo.quantidade[i].hp2-=24)
 
             }
@@ -462,21 +520,25 @@
                     
                 }
     } 
-      inimigo.quantidade.push(new Inimigo(obsx,obsy),new Inimigo(obsx,obsy),new Inimigo(obsx,obsy))
+    quantidade.push(new Inimigo(300,200),new Inimigo(500,200),new Inimigo(700,200))
     function MostrarPersonagem() {
-        for(let i=0;i<=inimigo.quantidade.length;i++){
-            if(inimigo.quantidade.length>=1){
-                inimigo.quantidade[0].mostrarNaTela(obsx=300,obsy-+00)
-                
-            }
-             if(inimigo.quantidade.length>=2){
-                inimigo.quantidade[1].mostrarNaTela(obsx=500,obsy-100)
-            }
-            if(inimigo.quantidade.length>=3){
-                inimigo.quantidade[2].mostrarNaTela(obsx=600,obsy+50)
-
-            }
+        for(let i=0;i<=quantidade.length-1;i++){
+                quantidade[i].mostrarNaTela()
         }
+
+        for(let i=0;i<=quantidade.length-1;i++){
+
+            console.log (quantidade.length)
+            
+            if(quantidade[i].hp2 <0){
+                quantidade.splice(i,1)
+
+                
+
+            console.log ('chegou aqui')
+            }
+            }
+
 
       sheroi.mostrarNaTela(x,y)
 
