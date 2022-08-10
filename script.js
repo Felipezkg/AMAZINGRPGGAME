@@ -31,7 +31,7 @@
     golher.src = "golpeHeroi.png"
 
     var espada = new Image()
-    espada.src = 'espadaccc.png'
+    espada.src = 'espada.png'
 
     var camisa = new Image()
     camisa.src = 'troncoandando1.png'
