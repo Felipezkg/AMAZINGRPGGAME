@@ -265,7 +265,7 @@
 
         AnimacaoMovimentoEsqueleto()
 
-        console.log(pauseBaixo,pauseCima,pauseDireita,pauseEsquerda)
+        console.log(`meu    x:`,x,`meu  Y:`,y)
         //que chama o jogo em 60fps
         requestAnimationFrame(main)
         //console.log(inimigo.quantidade[0].posicaox,inimigo.quantidade[1].posicaox,inimigo.quantidade[2].posicaox,armasx)
@@ -701,117 +701,129 @@
 
     function colisaoMapa(){
 
-        if( x <= 5){
-            andarEsquerda = false
-            pauseEsquerda = true
-            camx = 0
-        }else{ 
-            pauseEsquerda = false
+        ////////////colisao paredes ha esquerda/////////////
+        if((x<=10&&y<=380&&y>=80)||(x==1325&&y<125&&y>-595)||(x==1885&&y<=-595&&y>-1145)   ){
+            andarEsquerda=false
+            pauseEsquerda=true
+            camx=0
+        }else{
+            pauseEsquerda=false
         }
 
-        if(y >= 375 && x >= 35 && x <= 1555){
-            andarBaixo = false
-            pauseBaixo = true
-            camy = 0
+
+        if((y==380&&x>=10&&x<=1565)||(y==-340&&x>=1565&&x<=2115)||(y==-915&&x>=2120&&x<=2395)){
+            andarBaixo=false
+            pauseBaixo=true
+            camy=0
         }else{
-            pauseBaixo = false
+            pauseBaixo=false
+        }
+        if((x==1565&&y<=380&&y>=-340)){
+            andarDireita=false
+            pauseDireita=true    
+            camx=0
+        }else{
+            pauseDireita=false
         }
 
-        if(x >= 300 && x <= 1325 && y <= 135){
-            andarCima = false
-            pauseCima = true
-            camy = 0
-        }else{
-            pauseCima = false
-        }
+        // if( x <= 5){//travar para esquerda
+        //     andarEsquerda = false
+        //     pauseEsquerda = true
+        //     camx = 0
+        // }else{ 
+        //     pauseEsquerda = false
+        // }
+
+        // if(y >= 375 && x >= 35 && x <= 1555){//travar para baixo
+        //     andarBaixo = false
+        //     pauseBaixo = true
+        //     camy = 0
+        // }else{
+        //     pauseBaixo = false
+        // }
+
+        // if((x >= 300 && x <= 1325 && y <= 135)||(x >= 5 && x <= 340 && y <= 75)&&(x >= 1340 && x <= 1885 && y == -575)){//travar para cima
+        //     andarCima = false
+        //     pauseCima = true
+        //     camy = 0
+
+        // }else{
+        //     pauseCima = false
+        // }
  
-        if(x >= 5 && x <= 340 && y <= 75){
-            andarCima = false
-            pauseCima = true
-            camy = 0
-        }else{
-            pauseCima = false
-        }
+    
 
-        if(x >= 1555 && y <= 375 && y >= -340){
-            andarDireita = false
-            pauseDireita = true
-            camx = 0
-        }else{
-            pauseDireita = false
-        }
+        // if(x >= 1555 && y <= 375 && y >= -340){//travar para direita
+        //     andarDireita = false
+        //     pauseDireita = true
+        //     camx = 0
+        // }else{
+        //     pauseDireita = false
+        // }
 
-        if(x == 1340 && y <= 100 && y >= -575){
-            andarEsquerda = false
-            pauseEsquerda = true
-            camx = 0
-        }else{
-            pauseEsquerda = false
-        }
+        // if(x == 1340 && y <= 100 && y >= -575){//travar para esquerda
+        //     andarEsquerda = false
+        //     pauseEsquerda = true
+        //     camx = 0
+        // }else{
+        //     pauseEsquerda = false
+        // }
 
-        if(x >= 1340 && x <= 1885 && y == -575){
-            andarCima = false
-            pauseCima = true
-            camy = 0
-        }else{
-            pauseCima = false
-        }
+        // if(x >= 1570 && x <= 2105 && y == -345){//travar baixo
+        //     andarBaixo = false
+        //     pauseBaixo = true
+        //     camy = 0
+        // }else{
+        //     pauseBaixo = false
+        // }
 
-        if(x >= 1570 && x <= 2105 && y == -345){
-            andarBaixo = false
-            pauseBaixo = true
-            camy = 0
-        }else{
-            pauseBaixo = false
-        }
+        // if(x == 2110 && y <= -345 && y >= -910){//travar para dereita
+        //     andarDireita = false
+        //     pauseDireita = true
+        //     camx = 0
+        // }else{
+        //     pauseDireita = false
+        // }
 
-        if(x == 2110 && y <= -345 && y >= -910){
-            andarDireita = false
-            pauseDireita = true
-            camx = 0
-        }else{
-            pauseDireita = false
-        }
+        // if(x >= 2160 && x <= 2390 && y >= -920){//travar para baixo
+        //     andarBaixo = false
+        //     pauseBaixo = true
+        //     camy = 0
+        // }else{
+        //     pauseBaixo = false
+        // }
 
-        if(x >= 2160 && x <= 2390 && y >= -920){
-            andarBaixo = false
-            pauseBaixo = true
-            camy = 0
-        }else{
-            pauseBaixo = false
-        }
+        // if(x >= 2390 && y <= -920 && y >= -1225){//travar para direita
+        //     andarDireita = false
+        //     pauseDireita = true
+        //     camx = 0
+        // }else{
+        //     pauseDireita = false
+        // }
 
-        if(x >= 2390 && y <= -920 && y >= -1225){
-            andarDireita = false
-            pauseDireita = true
-            camx = 0
-        }else{
-            pauseDireita = false
-        }
+        // if(x <= 2390  && x >= 2160 && y <= -1225){
+        //     andarCima = false
+        //     pauseCima = true
+        //     camy = 0
+        // }else{
+        //     pauseCima = false
+        // }
 
-        if(x <= 2390  && x >= 2160 && y <= -1225){
-            andarCima = false
-            pauseCima = true
-            camy = 0
-        }else{
-            pauseCima = false
-        }
+        // if(x <= 1880  && y >= -1145 && y <= -575){
+        //     andarEsquerda = false
+        //     pauseEsquerda = true
+        //     camx = 0
+        // }else{
+        //     pauseEsquerda = false
+        // }
 
-        if(x <= 1880  && y >= -1145 && y <= -575){
-            andarEsquerda = false
-            pauseEsquerda = true
-            camx = 0
-        }else{
-            pauseEsquerda = false
-        }
-
-        if(x >= 1890 && x <= 2160 && y <= -1140){
-            andarCima = false
-            pauseCima = true
-            camy = 0
-        }else{
-            pauseCima = false
-        }
+        // if(x >= 1890 && x <= 2160 && y <= -1140){
+        //     andarCima = false
+        //     pauseCima = true
+        //     camy = 0
+        // }else{
+        //     pauseCima = false
+        // }
 
 
 
