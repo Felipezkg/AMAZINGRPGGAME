@@ -200,13 +200,9 @@
    
     // códigos do teclado
     var somar = 0
-    var esquerda = 37
     var esquerdaA = 65
-    var cima = 38
     var cimaA = 87
-    var direita = 39
     var direitaA = 68
-    var baixo = 40
     var baixoA = 83
     var golpe = 67
     var armasx = 10000
@@ -214,7 +210,7 @@
     var espaco = 32
     var contador = 0
     var andarEsquerda = false
-    var andarDireira = false
+    var andarDireita = false
     var conta = 0
     var contaAnimacao=0
     var cabeca = cabelo
@@ -269,7 +265,7 @@
 
         AnimacaoMovimentoEsqueleto()
 
-        
+        console.log(pauseBaixo,pauseCima,pauseDireita,pauseEsquerda)
         //que chama o jogo em 60fps
         requestAnimationFrame(main)
         //console.log(inimigo.quantidade[0].posicaox,inimigo.quantidade[1].posicaox,inimigo.quantidade[2].posicaox,armasx)
@@ -302,7 +298,7 @@
 
         AnimacaoMovimento()
         //vida do personagem
-        if(andarDireira==true){
+        if(andarDireita==true){
             camx =- 5
         } else if(andarEsquerda==true){
             camx = 5
@@ -314,25 +310,25 @@
     //funcao que le as teclas 
     function MovimentaPersonagem(evento) {
 
-        if (evento.keyCode == cima || evento.keyCode == cimaA&&pauseCima==false) { 
+        if (evento.keyCode == cimaA&&pauseCima==false) { 
             andarCima = true;
             andarBaixo = false;
             camy = 5
 
-        }else if (evento.keyCode == baixo || evento.keyCode == baixoA&&pauseBaixo==false) {
+        }else if (evento.keyCode == baixoA&&pauseBaixo==false) {
             andarBaixo = true;
             andarCima = false;
             camy =- 5
 
-        }else if (evento.keyCode == esquerda || evento.keyCode == esquerdaA&&pauseEsquerda==false) {
+        }else if (evento.keyCode == esquerdaA&&pauseEsquerda==false) {
             ponto2 = false
-            andarDireira = false
+            andarDireita = false
             andarEsquerda =  true
             camx = 5
 
-        }else if (evento.keyCode == direita || evento.keyCode == direitaA&&pauseDireita==false) {
+        }else if (evento.keyCode == direitaA&&pauseDireita==false) {
             ponto = false
-            andarDireira = true
+            andarDireita = true
             camx =- 5
         }
 
@@ -341,7 +337,7 @@
             camy=false
             andarBaixo=false
             andarCima=false
-            andarDireira=false
+            andarDireita=false
             andarEsquerda=false
             armasx = x
             armasy=y
@@ -588,7 +584,7 @@
                         }   
                         cont++
                 }
-                    if (andarDireira==true){
+                    if (andarDireita==true){
                         posicaoDoGolpe=3
                             animay=3
                             x=x+5
@@ -667,24 +663,24 @@
     }
     //funcao que le quando soltamos a tecla.
     function combate(evento){
-            if(evento.keyCode ==esquerda || evento.keyCode == esquerdaA){
+            if(evento.keyCode == esquerdaA){
                 camx=0
                 andarEsquerda = false
                 animay=1
                 cont =0
                 animax = 0
-            }else if(evento.keyCode==direita || evento.keyCode == direitaA){
+            }else if(evento.keyCode == direitaA){
                 camx=0
                 animay=3
-                andarDireira = false
+                andarDireita = false
                 cont=0
                 animax = 0
-            }else if(evento.keyCode==cima || evento.keyCode == cimaA){
+            }else if(evento.keyCode == cimaA){
                 animay=0
                 animax=1
                 andarCima=false
                 camy=0
-            }else if(evento.keyCode==baixo || evento.keyCode == baixoA){
+            }else if(evento.keyCode == baixoA){
                 andarBaixo=false
                 animay=2
                 animax=0
@@ -698,79 +694,126 @@
 
             }
     }
+
+
+    
+
+
     function colisaoMapa(){
-        if(x<=5){
-            andarEsquerda=false
-            pauseEsquerda=true
-            camx=0
+
+        if( x <= 5){
+            andarEsquerda = false
+            pauseEsquerda = true
+            camx = 0
         }else{ 
-            pauseEsquerda=false
+            pauseEsquerda = false
         }
-        if(y>=375){
-            andarBaixo=false
-            pauseBaixo=true
-            camy=0
+
+        if(y >= 375 && x >= 35 && x <= 1555){
+            andarBaixo = false
+            pauseBaixo = true
+            camy = 0
         }else{
-            pauseBaixo=false
+            pauseBaixo = false
         }
-        if(x>=300&&x<=1310&&y<=125){
-            andarCima=false
-            pauseCima=true
-            camy=0
+
+        if(x >= 300 && x <= 1325 && y <= 135){
+            andarCima = false
+            pauseCima = true
+            camy = 0
         }else{
-            pauseCima=false
+            pauseCima = false
+        }
+ 
+        if(x >= 5 && x <= 340 && y <= 75){
+            andarCima = false
+            pauseCima = true
+            camy = 0
+        }else{
+            pauseCima = false
         }
 
-        // if(x <= 5 && y <= 140 || x <= 1325 && y <= 140 || x <= 10 && y <= 380 || x <= 1550 && y >= 380) {
+        if(x >= 1555 && y <= 375 && y >= -340){
+            andarDireita = false
+            pauseDireita = true
+            camx = 0
+        }else{
+            pauseDireita = false
+        }
 
-        //     andarCima = false
-        //     andarBaixo=false
-        //     camx -= camx
-        //     camy -= camy
-        //     pause=true
+        if(x == 1340 && y <= 100 && y >= -575){
+            andarEsquerda = false
+            pauseEsquerda = true
+            camx = 0
+        }else{
+            pauseEsquerda = false
+        }
+
+        if(x >= 1340 && x <= 1885 && y == -575){
+            andarCima = false
+            pauseCima = true
+            camy = 0
+        }else{
+            pauseCima = false
+        }
+
+        if(x >= 1570 && x <= 2105 && y == -345){
+            andarBaixo = false
+            pauseBaixo = true
+            camy = 0
+        }else{
+            pauseBaixo = false
+        }
+
+        if(x == 2110 && y <= -345 && y >= -910){
+            andarDireita = false
+            pauseDireita = true
+            camx = 0
+        }else{
+            pauseDireita = false
+        }
+
+        if(x >= 2160 && x <= 2390 && y >= -920){
+            andarBaixo = false
+            pauseBaixo = true
+            camy = 0
+        }else{
+            pauseBaixo = false
+        }
+
+        if(x >= 2390 && y <= -920 && y >= -1225){
+            andarDireita = false
+            pauseDireita = true
+            camx = 0
+        }else{
+            pauseDireita = false
+        }
+
+        if(x <= 2390  && x >= 2160 && y <= -1225){
+            andarCima = false
+            pauseCima = true
+            camy = 0
+        }else{
+            pauseCima = false
+        }
+
+        if(x <= 1880  && y >= -1145 && y <= -575){
+            andarEsquerda = false
+            pauseEsquerda = true
+            camx = 0
+        }else{
+            pauseEsquerda = false
+        }
+
+        if(x >= 1890 && x <= 2160 && y <= -1140){
+            andarCima = false
+            pauseCima = true
+            camy = 0
+        }else{
+            pauseCima = false
+        }
 
 
-        // }else{
-        //     pause=false
-        // }
-
-        // if(x >= 1545 && y >= -290){
-        //     andarDireira = false
-        //     camx -= camx
-        //     camy -= camy
-        // }
-
-        
-
-        // if(x <= 15 && y >= 380 || x <= 15 && y >= 70){
-        //     andarEsquerda = false
-        //     camx -= camx
-        //     camy -= camy
-        // }
-
-        // if(x >= 5 && y <= 70 || x >= 310 && y <= 70){
-        //     andarCima = false
-        //     camx -= camx
-        //     camy -= camy
-        // }
-
-        // if(x >= 320 && y <= 70 || x >= 325 && y <= 140){
-        //     andarDireira = false
-        //     camx -= camx
-        //     camy -= camy
-        // }
-
-        // if(x >= 365 && y <= 145 || x <= 1325 && y <= 145){
-        //     andarCima = false
-        //     camx -= camx
-        //     camy -= camy
-        // }
-
-        // if(y < 145 && x > 1565){
-        //     andarCima = true
-        //     camx -= camx
-        //     camy -= camy
-        // }
 
     }
 
