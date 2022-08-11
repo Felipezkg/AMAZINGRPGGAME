@@ -245,13 +245,14 @@
     var cont = 0
     //variavel de selecao de animacao de combate
     var animaG = false
+    var colisaoMapas=1
 
     //chama as outras funcoes.
     function main() {
 
         ColisaoEDano()
                 
-        mudarmapa()        
+        mudarmapa()  
     
         background();
 
@@ -285,8 +286,10 @@
         if((x>=2140&&x<=2200)&&y<=-1000&&y>=-1095){
             fundo.src = 'mapa2.png'
             mapax=2000
+            colisaoMapas=2
         } else if((x>=2130&&x<=2190)&&(y<-430&&y>=-525)){
             fundo.src = 'mapa3.png'
+            colisaoMapas=3
 
         }
 
@@ -701,7 +704,13 @@
 
     function colisaoMapa(){
 
-        ////////////colisao paredes ha esquerda/////////////
+
+
+
+        ///colisoes mapa 1///
+        if(colisaoMapas==1){
+
+            ////////////colisao paredes ha esquerda/////////////
         if((x<=10&&y<=380&&y>=80)||(x==1325&&y<125&&y>-595)||(x==1885&&y<=-595&&y>-1145)   ){
             andarEsquerda=false
             pauseEsquerda=true
@@ -710,7 +719,7 @@
             pauseEsquerda=false
         }
 
-
+            ////////////colisao paredes ha baixo/////////////
         if((y==380&&x>=10&&x<=1565)||(y==-340&&x>=1565&&x<=2115)||(y==-915&&x>=2120&&x<=2395)){
             andarBaixo=false
             pauseBaixo=true
@@ -718,6 +727,8 @@
         }else{
             pauseBaixo=false
         }
+
+            ////////////colisao paredes ha direita/////////////
         if((x==1565&&y<=380&&y>=-340)){
             andarDireita=false
             pauseDireita=true    
@@ -725,6 +736,9 @@
         }else{
             pauseDireita=false
         }
+        }
+
+        
 
         // if( x <= 5){//travar para esquerda
         //     andarEsquerda = false
