@@ -57,7 +57,7 @@
                     ctx.drawImage(espada,sheroi.animacaox[animax],sheroi.animacaoy[animay],sheroi.largura,sheroi.altura,x,y,100,100)
                 }
             }
-            this.hp=function barraHp(x,y){ 
+            this.hp = function barraHp(x,y){ 
         
                 ctx.fillStyle = 'white';
                 ctx.beginPath();
@@ -266,7 +266,8 @@
 
         AnimacaoMovimentoEsqueleto()
 
-        console.log(`meu    x:`,x,`meu  Y:`,y)
+        // console.log(`meu    x:`,x,`meu  Y:`,y)
+
         //que chama o jogo em 60fps
         requestAnimationFrame(main)
         //console.log(inimigo.quantidade[0].posicaox,inimigo.quantidade[1].posicaox,inimigo.quantidade[2].posicaox,armasx)
@@ -345,7 +346,6 @@
             armasx = x
             armasy=y
             animaG = true
-            console.log(golpe)
         } 
         if(evento.keyCode == espaco){
             pulo = true
@@ -355,17 +355,9 @@
     }
     function ColisaoEDano(){
         for(i=0;i<quantidade.length-1;i++){
-
             if(armasx==quantidade[i].hp()){
-            console.log(inimigo.quantidade[i].hp2-=24)
-
             }
-            
-            
-
         }
-      
-      
     }
 
     //funcao que escolhe a imagem da movimentacao(animacao de caminhada do personagem).
@@ -435,15 +427,14 @@
 
             }
             contaAnimacao++
+
             if(contaAnimacao == 75){
                 animaxEsqueleto = 8
                 contaAnimacao = 0
-                console.log(contaAnimacao)
                 andarBaixoEsqueleto=false
                     andarCimaEsqueleto=true
 
-            }
-           
+            }  
         }
     }
     function AnimacaoMovimento(){
@@ -479,11 +470,7 @@
                     cont = 0
                 }  
                 cont++
-                
-
-            }
-
-                      
+            }       
 
                 if (andarBaixo == true){
                     posicaoDoGolpe=2
@@ -519,7 +506,6 @@
                 } 
                     cont++
                 }
-                
                 
                     if(animaG == true){
                         cabeca = cabelo2
@@ -624,31 +610,24 @@
                     
                 }
     } 
-    quantidade.push(new Inimigo(obsx=990,obsy=220),new Inimigo(obsx= 1450,obsy= -170),new Inimigo(1700,-500))
+    quantidade.push(new Inimigo(obsx = 990, obsy = 220),new Inimigo(obsx = 1450,obsy = -170),new Inimigo(1700, -500))
     function MostrarPersonagem() {
         for(let i=0;i<=quantidade.length-1;i++){
                 quantidade[i].mostrarNaTela()
         }
 
         for(let i=0;i<=quantidade.length-1;i++){
-
-            console.log (quantidade.length)
             
             if(quantidade[i].hp2 <0){
                 quantidade.splice(i,1)
-
-                
-
-            console.log ('chegou aqui')
             }
-            }
+        }
 
 
       sheroi.mostrarNaTela(x,y)
 
         
     }
-
 
     // Quantidade de pixel que o objeto se movimenta.
     var taxa = 20;
@@ -738,7 +717,6 @@
     }
 
     colisaoMapa()
-
 
     
     //Tela de Gamer Over
