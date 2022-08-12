@@ -181,9 +181,13 @@
 
     //determina posicao do golpe
     var posicaoDoGolpe = false
-    //setar a possicao do mapa na tela , Um "alinhador"
+    //setar a posicao do mapa na tela , Um "alinhador"
     var mapax = 0
-    var mapay= -1200
+    var mapay = -1200
+    
+    //setar a posicao do mapa2 na tela , Um "alinhador"
+    var mapax2 = 0
+    var mapay2 = -1200
 
     //variavel que determina qual imagem sera exibida na tela
     var img = eroi
@@ -291,7 +295,7 @@
 
         if((x >= 2140 && x <= 2200) && y <= -1000 && y >=-1095){
             fundo.src = 'mapa2.png'
-            mapax=2000
+            mapax2=2005
             colisaoMapas=2
         }
 
@@ -650,6 +654,7 @@
        
         
         ctx.drawImage(fundo, mapax, mapay,2500, 1800)
+        ctx.drawImage(fundo, mapax2, mapay2,2500, 1800)
     }
     //funcao que le quando soltamos a tecla.
     function combate(evento){
