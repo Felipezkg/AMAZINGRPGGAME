@@ -271,6 +271,8 @@
 
         AnimacaoMovimentoEsqueleto()
 
+        colisaoMapa2()
+
         }
 
        
@@ -729,7 +731,21 @@
         }
     }
 
+    function colisaoMapa2(){
+        if(colisaoMapas == 2){
+                ////////////COLISÃO PAREDES CIMA/////////////
+            if((x >= 2310 && x <= 4315 && y == -1085)){
+                andarCima = false
+                pauseCima = true
+                camy = 0
+            }else{
+                pauseCima = false
+            }
+        }
+    }
+
     colisaoMapa()
+    colisaoMapa2()
 
     
     //Tela de Gamer Over
