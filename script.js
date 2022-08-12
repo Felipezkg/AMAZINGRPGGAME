@@ -267,7 +267,6 @@
 
         AnimacaoMovimentoEsqueleto()
 
-        pontuacao()
         }
 
        
