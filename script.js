@@ -292,14 +292,10 @@
     //funcao que muda de mapa 
     function mudarmapa(){
 
-        if((x>=2140&&x<=2200)&&y<=-1000&&y>=-1095){
-            fundo.src = 'mapa2.png'
+        if((x >= 2140 && x <= 2200) && y <= -1000 && y >=-1095){
+            fundo.src = 'mapa2.jpeg'
             mapax=2000
             colisaoMapas=2
-        } else if((x>=2130&&x<=2190)&&(y<-430&&y>=-525)){
-            fundo.src = 'mapa3.png'
-            colisaoMapas=3
-
         }
 
     }
