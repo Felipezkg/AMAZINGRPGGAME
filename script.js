@@ -294,7 +294,7 @@
     function mudarmapa(){
 
         if((x >= 2140 && x <= 2200) && y <= -1000 && y >=-1095){
-            fundo.src = 'mapa2.png'
+            fundo.src = 'mapa2top.png'
             mapax2=2005
             colisaoMapas=2
         }
