@@ -2,6 +2,8 @@
     const canvas = document.getElementById("canvas")
     const ctx = canvas.getContext('2d')
     
+    var inventario = new Image()
+    inventario.src ="inventario.jpg"
 
     var letras = new Image()
     letras.src = "fonte.png"    
@@ -36,6 +38,8 @@
     var camisa = new Image()
     camisa.src = 'troncoandando1.png'
 
+    var pauseGame=false
+
     //Classe do heroi
     class Personagens{
         constructor(x,y){
@@ -46,6 +50,7 @@
                 this.altura = 64
                 this.largura = 64
                 this.cabeca = []
+                this.inventario = 
                 this.mostrarNaTela = function(x,y){
 
                 ctx.drawImage(img,this.animacaox[animax],this.animacaoy[animay],this.largura,this.altura,x,y,100,100)
@@ -249,7 +254,7 @@
 
     //chama as outras funcoes.
     function main() {
-
+        if(pauseGame==false){
         ColisaoEDano()
                 
         mudarmapa()  
@@ -265,6 +270,9 @@
         colisaoMapa()
 
         AnimacaoMovimentoEsqueleto()
+        }
+
+       
 
         console.log(`meu    x:`,x,`meu  Y:`,y)
         //que chama o jogo em 60fps
@@ -349,7 +357,13 @@
         } 
         if(evento.keyCode == espaco){
             pulo = true
-            contador = 40   
+            contador = 40  
+            if(pauseGame==false){
+                pauseGame=true 
+
+            }else{
+                pauseGame=false
+            }
 
         }
     }
@@ -398,14 +412,15 @@
                     animaxEsqueleto = 7
                     
 
-                }else if(contaAnimacao == 75){
+                }
+            contaAnimacao++
+                if(contaAnimacao == 75){
                     animaxEsqueleto = 8
                     contaAnimacao = 0
                 andarCimaEsqueleto=false
                 andarBaixoEsqueleto=true
 
                 }
-            contaAnimacao++
             
 
         } 
