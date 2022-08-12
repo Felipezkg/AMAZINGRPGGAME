@@ -1,9 +1,6 @@
 
     const canvas = document.getElementById("canvas")
     const ctx = canvas.getContext('2d')
-    
-    var inventario = new Image()
-    inventario.src ="inventario.jpg"
 
     var letras = new Image()
     letras.src = "fonte.png"    
@@ -38,7 +35,7 @@
     var camisa = new Image()
     camisa.src = 'troncoandando1.png'
 
-    var pauseGame=false
+    var pauseGame = false
 
     //Classe do heroi
     class Personagens{
@@ -50,7 +47,6 @@
                 this.altura = 64
                 this.largura = 64
                 this.cabeca = []
-                this.inventario = 
                 this.mostrarNaTela = function(x,y){
 
                 ctx.drawImage(img,this.animacaox[animax],this.animacaoy[animay],this.largura,this.altura,x,y,100,100)
@@ -94,17 +90,17 @@
                 this.hp = function hp(obsx,obsy){
 
 
-                ctx.fillStyle = 'white';
-                ctx.beginPath();
-                ctx.rect(obsx - 1, obsy - 17, 100, 16)
-                ctx.closePath();
-                ctx.fill();
+                    ctx.fillStyle = 'white';
+                    ctx.beginPath();
+                    ctx.rect(obsx - 1, obsy - 17, 100, 16)
+                    ctx.closePath();
+                    ctx.fill();
 
-                ctx.fillStyle = 'red';
-                ctx.beginPath();
-                ctx.rect(obsx + 1, obsy - 15,this.hp2, 12)
-                ctx.closePath();
-                ctx.fill();
+                    ctx.fillStyle = 'red';
+                    ctx.beginPath();
+                    ctx.rect(obsx + 1, obsy - 15,this.hp2, 12)
+                    ctx.closePath();
+                    ctx.fill();
 
             }
             this.mostrarNaTela = function(){
@@ -270,6 +266,8 @@
         colisaoMapa()
 
         AnimacaoMovimentoEsqueleto()
+
+        pontuacao()
         }
 
        
@@ -293,7 +291,7 @@
     function mudarmapa(){
 
         if((x >= 2140 && x <= 2200) && y <= -1000 && y >=-1095){
-            fundo.src = 'mapa2.jpeg'
+            fundo.src = 'mapa2.png'
             mapax=2000
             colisaoMapas=2
         }
