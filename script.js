@@ -296,8 +296,9 @@
     function mudarmapa(){
 
         if((x >= 2140 && x <= 2200) && y <= -1000 && y >=-1095){
-            fundo.src = 'mapa2.png'
-            mapax2=2005
+            fundo.src = 'map.png'
+            mapax=1500
+            mapay=-1250
             colisaoMapas=2
         }
 
@@ -656,7 +657,6 @@
        
         
         ctx.drawImage(fundo, mapax, mapay,2500, 1800)
-        ctx.drawImage(fundo, mapax2, mapay2,2500, 1800)
     }
     //funcao que le quando soltamos a tecla.
     function combate(evento){
@@ -724,7 +724,7 @@
             if(x >= 10 && x <= 305 && y == 80 || (x >= 370 && x <= 1285 && y == 150) || (x >= 1325 && x <= 1875 && y == -575) || (x >= 1885 && x <= 2165 && y == -1140) || (x >= 2165 && x <= 2385 && y == -1220)){
                 andarCima = false
                 pauseCima = true    
-                camx = 0
+                camy = 0
             }else{
                 pauseCima = false
             }
@@ -740,22 +740,6 @@
                 camy = 0
             }else{
                 pauseCima = false
-            }
-            //COLISÃO BAIXO 1//
-            if((x >= 2305 && x <= 4050 && y == -870)){
-                andarBaixo = false
-                pauseBaixo = true
-                camy = 0
-            }else{
-                pauseBaixo = false
-            }
-            //COLISAO PAREDDE ESQUERDA//
-            if((y >= -835 && y <= -315 && x == 4110)){
-                andarEsquerda = false
-                pauseEsquerda = true
-                camx = 0
-            }else{
-                pauseEsquerda = false
             }
         }
     }
