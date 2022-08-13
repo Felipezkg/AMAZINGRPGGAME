@@ -37,6 +37,10 @@
 
     var pauseGame = false
 
+    var contadorDasMortes = 0
+
+    var contadorDosPontos = 0
+
     //Classe do heroi
     class Personagens{
         constructor(x,y){
@@ -120,6 +124,18 @@
                     bateu=true
                 }
                 
+                if(this.hp2 <= 0){
+                    
+                    contadorDasMortes = contadorDasMortes + 1
+
+                    document.getElementById('morteInimigos').innerHTML = contadorDasMortes
+
+                    contadorDosPontos = contadorDosPontos + 10
+
+                    document.getElementById('pontosGanhos').innerHTML = contadorDosPontos
+
+
+                }
                 
                 
             }
@@ -261,7 +277,7 @@
     
         background();
 
-        MostrarBaus()
+        //MostrarBaus()
 
         MovimentaCamera()
 
