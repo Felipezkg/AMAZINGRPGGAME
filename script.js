@@ -274,7 +274,7 @@
         colisaoMapa2()
 
         }
-        console.log(x,y,obsx)
+        console.log('x:'+ x,'y:'+ y,obsx)
 
        
 
@@ -735,7 +735,7 @@
     function colisaoMapa2(){
         if(colisaoMapas == 2){
                 ////////////COLISÃO PAREDES CIMA/////////////
-            if((x >= 2310 && x <= 4315 && y == -1085)){
+            if((x >= 2130 && x <= 3750 && y == -1065) || (x >= 1925 && x <= 2070 && y == -1140) || (x >= 1940 && x <= 3535 && y == -405) || (x >= 1725 && x <= 1890 && y == -555)){
                 andarCima = false
                 pauseCima = true
                 camy = 0
