@@ -761,8 +761,36 @@
             }else{
                 pauseCima = false
             }
+             //COLISÃO PAREDES DE BAIXO//
+             if((x >= 1915 && x <= 3565 && y == -885) || (x >= 1985 && x <= 3750 && y == 50) || (x >= 1705 && x <= 1960 && y == 200)){
+                andarBaixo = false
+                pauseBaixo = true
+                camy = 0
+                }else{
+                pauseBaixo = false
+                }
+                     //COLISÃO PAREDES DIREITAS//
+                 if((y >= -1065 && y <= 55 && x == 3755) ||(y >= 60 && y <= 215 && x == 1945)){
+                    andarDireita = false
+                    pauseDireita = true
+                    camx = 0
+                }else{
+                    pauseDireita = false
+
+
+                }
+
+                    //COLISÃO PARADES ESQUERDAS//
+                if((y <= -460 && y >= -860 && x == 3590) || (y <= 200 && y >= -570 && x == 1720)){
+                    andarEsquerda = false
+                    pauseEsquerda = true
+                    camx = 0
+                }else{
+                    pauseEsquerda = false
+            } 
         }
     }
+    
 
     colisaoMapa()
     colisaoMapa2()
