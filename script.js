@@ -724,7 +724,7 @@
             if(x >= 10 && x <= 305 && y == 80 || (x >= 370 && x <= 1285 && y == 150) || (x >= 1325 && x <= 1875 && y == -575) || (x >= 1885 && x <= 2165 && y == -1140) || (x >= 2165 && x <= 2385 && y == -1220)){
                 andarCima = false
                 pauseCima = true    
-                camy = 0
+                camx = 0
             }else{
                 pauseCima = false
             }
@@ -742,14 +742,20 @@
                 pauseCima = false
             }
             //COLISÃO BAIXO 1//
-            if((x >= 2325 && x <= 4035 && y == -835)){
+            if((x >= 2305 && x <= 4050 && y == -870)){
                 andarBaixo = false
                 pauseBaixo = true
                 camy = 0
             }else{
                 pauseBaixo = false
-
-                
+            }
+            //COLISAO PAREDDE ESQUERDA//
+            if((y >= -835 && y <= -315 && x == 4110)){
+                andarEsquerda = false
+                pauseEsquerda = true
+                camx = 0
+            }else{
+                pauseEsquerda = false
             }
         }
     }
