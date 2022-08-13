@@ -749,6 +749,7 @@
             }else{
                 pauseBaixo = false
 
+                
             }
         }
     }
