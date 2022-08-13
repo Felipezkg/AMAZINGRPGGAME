@@ -274,7 +274,9 @@
         colisaoMapa2()
 
         }
+
         console.log('x:'+ x,'y:'+ y,obsx)
+
 
        
 
