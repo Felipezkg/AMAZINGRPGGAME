@@ -274,6 +274,7 @@
         colisaoMapa2()
 
         }
+        console.log(mapax,mapay)
 
        
 
@@ -296,7 +297,7 @@
     function mudarmapa(){
 
         if((x >= 2140 && x <= 2200) && y <= -1000 && y >=-1095){
-            fundo.src = 'map.png'
+            fundo.src = 'mapa2.png'
             mapax=1500
             mapay=-1250
             colisaoMapas=2
