@@ -1,4 +1,3 @@
-
     const canvas = document.getElementById("canvas")
     const ctx = canvas.getContext('2d')
 
@@ -41,7 +40,7 @@
 
     var contadorDosPontos = 0
 
-    //Classe do heroi
+    //CLASSE DO PERSONAGEM
     class Personagens{
         constructor(x,y){
                 this.posicaox = x
@@ -53,15 +52,15 @@
                 this.cabeca = []
                 this.mostrarNaTela = function(x,y){
 
-                ctx.drawImage(img,this.animacaox[animax],this.animacaoy[animay],this.largura,this.altura,x,y,100,100)
-                ctx.drawImage(cabeca,this.animacaox[animax],this.animacaoy[animay],this.largura,this.altura,x,y,100,100)
-                ctx.drawImage(camisa,this.animacaox[animax],this.animacaoy[animay],this.largura,this.altura,x,y,100,100)
-                ctx.drawImage(pernas,this.animacaox[animax],this.animacaoy[animay],this.largura,this.altura,x,y,100,100)
-                this.hp(x,y)
-                if(animaG == true){
-                    ctx.drawImage(espada,sheroi.animacaox[animax],sheroi.animacaoy[animay],sheroi.largura,sheroi.altura,x,y,100,100)
+                    ctx.drawImage(img,this.animacaox[animax],this.animacaoy[animay],this.largura,this.altura,x,y,100,100)
+                    ctx.drawImage(cabeca,this.animacaox[animax],this.animacaoy[animay],this.largura,this.altura,x,y,100,100)
+                    ctx.drawImage(camisa,this.animacaox[animax],this.animacaoy[animay],this.largura,this.altura,x,y,100,100)
+                    ctx.drawImage(pernas,this.animacaox[animax],this.animacaoy[animay],this.largura,this.altura,x,y,100,100)
+                    this.hp(x,y)
+                    if(animaG == true){
+                        ctx.drawImage(espada,sheroi.animacaox[animax],sheroi.animacaoy[animay],sheroi.largura,sheroi.altura,x,y,100,100)
+                    }
                 }
-            }
             this.hp = function barraHp(x,y){ 
         
                 ctx.fillStyle = 'white';
@@ -80,8 +79,8 @@
         }
     }
     
-     //Classe do inimigo
-     class Inimigo{
+     //CLASSE DO INIMIGO
+    class Inimigo{
         constructor(obsx,obsy){
                 this.posicaox = obsx
                 this.posicaoy = obsy
@@ -106,45 +105,32 @@
                     ctx.closePath();
                     ctx.fill();
 
-            }
+                }
             this.mostrarNaTela = function(){
 
-                ctx.drawImage(esqueleto,this.animacaox[animaxEsqueleto],this.animacaoy[animayEsqueleto],this.largura,this.altura,this.posicaox+passosEsqueletoX,this.posicaoy+passosEsqueletoY,100,100)
+                ctx.drawImage(esqueleto, this.animacaox [animaxEsqueleto], this.animacaoy [animayEsqueleto], this.largura, this.altura, this.posicaox + passosEsqueletoX, this.posicaoy + passosEsqueletoY, 100, 100)
 
-                this.hp(this.posicaox+passosEsqueletoX,this.posicaoy+passosEsqueletoY)
+                this.hp(this.posicaox + passosEsqueletoX, this.posicaoy + passosEsqueletoY)
 
-                     if(armasx>(obsx+passosEsqueletoX)-60&&armasx<(obsx+passosEsqueletoX)+60&&y>obsy+passosEsqueletoY-60&&y<obsy+passosEsqueletoY+60&&bateu==true){
-                    this.hp2-=14
-                    bateu= false
-                }
+                    if(armasx > (obsx + passosEsqueletoX) - 60 && armasx < (obsx + passosEsqueletoX) + 60 && y > obsy + passosEsqueletoY -60 && y < obsy + passosEsqueletoY + 60 && bateu == true){
+                    this.hp2 -= 14
+                    bateu = false
+                    }
 
-                
-                
-               
-                if(armasx==10000){
-                    bateu=true
+                if(armasx == 10000){
+                    bateu = true
                 }
                 
                 if(this.hp2 <= 0){
-                    
-                    contadorDasMortes = contadorDasMortes + 1
-
+                    contadorDasMortes + 1
                     document.getElementById('morteInimigos').innerHTML = contadorDasMortes
-
-                    contadorDosPontos = contadorDosPontos + 10
-
+                    contadorDosPontos += 10
                     document.getElementById('pontosGanhos').innerHTML = contadorDosPontos
-
-
-                }
-                
-                
+                }       
             }
         }
     }
-    var passosEsqueletoX=5
-    var passosEsqueletoY=5
-
+    //CLASSE DOS BAUS
     class Baus {
         constructor(posBauX,posBauY){
                 this.posicaox = posBauX
@@ -160,67 +146,63 @@
 
                 ctx.drawImage(bau,this.animacaox[0],this.animacaoy[0],this.largura,this.altura,this.posicaox,this.posicaoy,64,54)
                 if(x>=25&&x<=105&&y>=305&&y<=375){
-                ctx.drawImage(letras,32*4,31*4,this.alturafonte,this.largurafonte,this.posicaox+20,this.posicaoy-20,20,20)
-                
-                    
+                ctx.drawImage(letras,32*4,31*4,this.alturafonte,this.largurafonte,this.posicaox+20,this.posicaoy-20,20,20)    
                 }
                 
                 if(x==this.posicaox){
                     cabelo.src='capaceteandando1.png'
-                    cabelo2.src='capacetegolpe1.png'
-                    
-                }
-              
-                
+                    cabelo2.src='capacetegolpe1.png'  
+                }            
             }
         }
     }   
 
-
-    var animayEsqueleto=2
-    var animaxEsqueleto=2
-    var andarCimaEsqueleto=false
-    var andarBaixoEsqueleto=true
+    var passosEsqueletoX = 5
+    var passosEsqueletoY = 5
+    var animayEsqueleto = 2
+    var animaxEsqueleto = 2
+    var andarCimaEsqueleto = false
+    var andarBaixoEsqueleto = true
     
-    //colicao da arma com obsx
+    //COLISAO DA ARMA COM O OBSX
     var bateu = true
     
-    //vetor de Baus
-    var baumapa= []
-    //vetor de inimigos
+    //VETOR DOS BAUS
+    var baumapa = []
+    //VETOR DOS INIMIGOS
     var quantidade = []
 
-    //Obejtos pesonagens
+    //OBJETO PERSONAGENS E INIMIGOS
     var inimigo = new Inimigo(obsx,obsy)
     var inimigo1= new Inimigo
 
     var sheroi = new Personagens(x,y)
 
-    //determina posicao do golpe
+    //POSIÇÃO INICIAL DO GOLPE
     var posicaoDoGolpe = false
-    //setar a posicao do mapa na tela , Um "alinhador"
+    //SETAR A POSIÇÃO DO MAPA NA TELA, UM "ALINHADOR"
     var mapax = 0
     var mapay = -1200
     
-    //setar a posicao do mapa2 na tela , Um "alinhador"
+    //SETAR A POSIÇÃO DO MAPA2 NA TELA, UM "ALINHADOR"
     var mapax2 = 0
     var mapay2 = -1200
 
-    //variavel que determina qual imagem sera exibida na tela
+    //VARIÁVEL QUE DETERMINA QUAL IMG SERÁ EXIBIDA NA TELA
     var img = eroi
 
-    // Váriavel que define a posição do Personagem.
-    var x = 490;  // Horizontal.
-    var y = 300; // Vertical.
+    //VARIÁVEL QUE DETERMINA A POSIÇÃO INICIAL DO PERSONAGEM
+    var x = 490;  // HORIZONTAL
+    var y = 300; // VERTICAL
 
-    // Váriavel que define a posição do Inimigo.
-    var obsx = 650; //Horizontal.
-    var obsy = 300; //Vertical.
-    //imagem das pernas
+    // VARIÁVEL QUE DETERMINA A POSIÇÃO DO INIMIGO
+    var obsx = 650; //HORIZONTAL
+    var obsy = 300; //VERTICAL
+    //IMAGEM DAS PERNAS
     var pernas = new Image()
-    pernas.src ="pernaandando1.png"
+    pernas.src = "pernaandando1.png"
    
-    // códigos do teclado
+    // CÓDIGOS DO TECLADO
     var somar = 0
     var esquerdaA = 65
     var cimaA = 87
@@ -234,77 +216,56 @@
     var andarEsquerda = false
     var andarDireita = false
     var conta = 0
-    var contaAnimacao=0
+    var contaAnimacao = 0
     var cabeca = cabelo
     var andarBaixo = false
     var andarCima = false
-    //variavel para if de travar o heroi
+    //VARIÁVEL PARA O IF DE TRAVAR O HERÓI
     var pauseEsquerda = false
     var pauseDireita = false
     var pauseCima = false
     var pauseBaixo = false
 
-    //calibracao da camera com objetos da tela
+    //CALIBRAÇÃO DA CÂMERA COM OS OBJETOS NA TELA
     var ponto = true
     var ponto2 = true
     var contou = 0
     var contou2 = 0
-    //posicao da camera
+    //POSIÇÃO DA CÂMERA
     var camx = 0
     var camy = 0
-    //valor inicial para o Hp heroi
+    //VALOR INICIAL DO HP DO HERÓI
     var hp = 96
-    //valor inicial para o Hp do inimigo
+    //VALOR INICIAL DO HP DO INIMIGO
     var hp3 = 96
-    //variavel para averiguação da posição
+    //VARIÁVEL PARA AVERIGUAÇÃO DE POSIÇÃO
     var dano = true
     var dano2 = true
     var dano3 = true
     
     var animay = 2
     var animax = 0
-    //contador da animacao
+    //CONTADOR DE ANIMAÇÃO
     var cont = 0
-    //variavel de selecao de animacao de combate
+    //VARIÁVEL DE SELEÇÃO DE ANIMAÇÃO DO COMBATE
     var animaG = false
     var colisaoMapas = 1
 
-    //chama as outras funcoes.
+    //FUNÇÃO PRINCIPAL QUE CHAMA TODAS AS OUTRAS
     function main() {
-        if(pauseGame==false){
-        ColisaoEDano()
-                
-        mudarmapa()  
-    
-        background();
-
-        //MostrarBaus()
-
-        MovimentaCamera()
-
-        MostrarPersonagem()
-
-        colisaoMapa()
-
-        AnimacaoMovimentoEsqueleto()
-
-        colisaoMapa2()
-
+        if(pauseGame == false){
+            ColisaoEDano()
+            mudarmapa()  
+            background();
+            MovimentaCamera()
+            MostrarPersonagem()
+            colisaoMapa()
+            AnimacaoMovimentoEsqueleto()
+            colisaoMapa2()
         }
 
-        console.log('x:'+ x,'y:'+ y,obsx)
-
-
-       
-
-        // console.log(`meu    x:`,x,`meu  Y:`,y)
-
-        //que chama o jogo em 60fps
         requestAnimationFrame(main)
-        //console.log(inimigo.quantidade[0].posicaox,inimigo.quantidade[1].posicaox,inimigo.quantidade[2].posicaox,armasx)
-        // console.log("meu x:",x,'meu y:',y,"inimigo x:",300,"inimigo y:",200)
-
-        ////////////////////////////////////250 -300 =50px ////////cxaaa
+       
     }
     baumapa.push(new Baus(75,400))
     function MostrarBaus(){
@@ -312,95 +273,89 @@
 
     }
 
-    //funcao que muda de mapa 
+    //FUNÇAÕ QUE MUDA DE MAPA
     function mudarmapa(){
 
         if((x >= 2140 && x <= 2200) && y <= -1000 && y >=-1095){
             fundo.src = 'mapa2.png'
-            mapax=1500
-            mapay=-1250
-            colisaoMapas=2
+            mapax = 1500
+            mapay =- 1250
+            colisaoMapas = 2
         }
-
     }
-    //funcao que atuliza a pisicao da camera usando o X e Y como parametro.
+    //FUNÇÃO QUE ATUALIZA A POSIÇÃO DA CÂMERA USANDO O X E Y COMO PARÂMETRO
     function MovimentaCamera (){
 
         ctx.translate(camx,  camy)
-
         AnimacaoMovimento()
-        //vida do personagem
-        if(andarDireita==true){
+
+        if(andarDireita == true){
             camx =- 5
-        } else if(andarEsquerda==true){
+        } else if(andarEsquerda == true){
             camx = 5
-        }else if(andarBaixo==true){
-
+        }else if(andarBaixo == true){
         }
-
     }
-    //funcao que le as teclas 
+    //FUNÇÃO QUE LÊ AS TECLAS DO TECLADO
     function MovimentaPersonagem(evento) {
 
-        if (evento.keyCode == cimaA&&pauseCima==false) { 
+        if (evento.keyCode == cimaA && pauseCima == false) { 
             andarCima = true;
             andarBaixo = false;
             camy = 5
 
-        }else if (evento.keyCode == baixoA&&pauseBaixo==false) {
+        }else if (evento.keyCode == baixoA && pauseBaixo == false) {
             andarBaixo = true;
             andarCima = false;
             camy =- 5
 
-        }else if (evento.keyCode == esquerdaA&&pauseEsquerda==false) {
+        }else if (evento.keyCode == esquerdaA && pauseEsquerda == false) {
             ponto2 = false
             andarDireita = false
             andarEsquerda =  true
             camx = 5
 
-        }else if (evento.keyCode == direitaA&&pauseDireita==false) {
+        }else if (evento.keyCode == direitaA && pauseDireita == false) {
             ponto = false
             andarDireita = true
             camx =- 5
         }
 
         if(evento.keyCode == golpe){
-            camx=false
-            camy=false
-            andarBaixo=false
-            andarCima=false
-            andarDireita=false
-            andarEsquerda=false
+            camx = false
+            camy = false
+            andarBaixo = false
+            andarCima = false
+            andarDireita = false
+            andarEsquerda = false
             armasx = x
-            armasy=y
+            armasy = y
             animaG = true
         } 
         if(evento.keyCode == espaco){
             pulo = true
             contador = 40  
-            if(pauseGame==false){
-                pauseGame=true 
-
+            if(pauseGame == false){
+                pauseGame = true 
             }else{
-                pauseGame=false
+                pauseGame = false
             }
-
         }
     }
+
     function ColisaoEDano(){
         for(i=0;i<quantidade.length-1;i++){
-            if(armasx==quantidade[i].hp()){
+            if(armasx == quantidade[i].hp()){
             }
         }
     }
 
-    //funcao que escolhe a imagem da movimentacao(animacao de caminhada do personagem).
+    //ANIMAÇÃO DA CAMINHADA DO ESQUELETO
     function AnimacaoMovimentoEsqueleto(){
         
         if (andarCimaEsqueleto == true){            
-            passosEsqueletoY=passosEsqueletoY-2
+            passosEsqueletoY = passosEsqueletoY -2
             animayEsqueleto = 0 
-
                 
                 if(contaAnimacao == 5){
                     animaxEsqueleto = 1
@@ -423,26 +378,25 @@
                 }else if(contaAnimacao == 65){
                     animaxEsqueleto = 7
                     
-
                 }
+
             contaAnimacao++
+
                 if(contaAnimacao == 75){
                     animaxEsqueleto = 8
                     contaAnimacao = 0
-                andarCimaEsqueleto=false
-                andarBaixoEsqueleto=true
-
+                    andarCimaEsqueleto = false
+                    andarBaixoEsqueleto = true
                 }
-            
-
         } 
+
         if (andarBaixoEsqueleto == true){
-            passosEsqueletoY=passosEsqueletoY+2
-            animayEsqueleto=2
+            passosEsqueletoY = passosEsqueletoY +2
+            animayEsqueleto = 2
             
             if(contaAnimacao == 5){
                 animaxEsqueleto = 1
-            } else if(contaAnimacao == 15){
+            }else if(contaAnimacao == 15){
                 animaxEsqueleto = 2
 
             }else if(contaAnimacao == 25){
@@ -459,28 +413,28 @@
 
             }else if(contaAnimacao == 65){
                 animaxEsqueleto = 7
-
             }
+
             contaAnimacao++
 
             if(contaAnimacao == 75){
                 animaxEsqueleto = 8
                 contaAnimacao = 0
-                andarBaixoEsqueleto=false
-                    andarCimaEsqueleto=true
+                andarBaixoEsqueleto = false
+                andarCimaEsqueleto = true
 
             }  
         }
     }
     function AnimacaoMovimento(){
             if (andarCima == true){            
-                y = y - 5
-                posicaoDoGolpe=0
+                y -= 5
+                posicaoDoGolpe = 0
                 animay = 0 
                     
                     if(cont == 5){
                         animax = 1
-                    } else if(cont == 10){
+                    }else if(cont == 10){
                         animax = 2
 
                     }else if(cont == 15){
@@ -514,7 +468,7 @@
                     
                     if(cont == 5){
                         animax = 1
-                    } else if(cont == 10){
+                    }else if(cont == 10){
                         animax = 2
 
                     }else if(cont == 15){
@@ -534,11 +488,12 @@
 
                     }else if(cont == 40){
                         animax = 8
-                        cont=0
+                        cont = 0
 
                     }else if(cont == 45){
                     cont = 0
-                } 
+                    
+                    }
                     cont++
                 }
                 
@@ -549,35 +504,35 @@
                         pernas.src="pernagolpe1.png"
                         animay = posicaoDoGolpe
                     
-                    if(conta==1){
-                        animax=2
+                    if(conta == 1){
+                        animax = 2
 
-                    }else if(conta==3){
-                        animax=3
+                    }else if(conta == 3){
+                        animax = 3
 
-                    }else if(conta==5){
-                        animax=4
+                    }else if(conta == 5){
+                        animax = 4
 
-                    }else if(conta==7){
-                        animax=5
+                    }else if(conta == 7){
+                        animax = 5
 
-                    }else if(conta==9){
-                        conta=0
-                        animax=0  
+                    }else if(conta == 9){
+                        conta = 0
+                        animax = 0  
                         img = eroi
                         animaG = false
                         cabeca = cabelo
-                        pernas.src='pernaandando1.png'
+                        pernas.src = 'pernaandando1.png'
                         camisa.src = 'troncoandando1.png'
 
                     } 
                     conta++ 
                 }
 
-                if (andarEsquerda==true){
-                    posicaoDoGolpe=1
-                        animay=1
-                        x=x-5
+                if (andarEsquerda == true){
+                    posicaoDoGolpe = 1
+                        animay = 1
+                        x -= 5
                     
                         if(cont == 5){
                             animax = 1
@@ -608,10 +563,10 @@
                         }   
                         cont++
                 }
-                    if (andarDireita==true){
-                        posicaoDoGolpe=3
-                            animay=3
-                            x=x+5
+                    if (andarDireita == true){
+                        posicaoDoGolpe = 3
+                            animay = 3
+                            x += 5
 
 
                             if(cont == 5){
@@ -636,7 +591,7 @@
         
                             }else if(cont == 40){
                                 animax = 8
-                                cont=0
+                                cont = 0
         
                             }else if(cont == 45){
                             cont = 0
@@ -645,70 +600,74 @@
                     
                 }
     } 
-    quantidade.push(new Inimigo(obsx = 990, obsy = 220),new Inimigo(obsx = 1450,obsy = -170),new Inimigo(1700, -500))
+        //QUANTIDADE DE INIMIGOS PELO JOGO TODO
+        quantidade.push(new Inimigo(obsx = 990, obsy = 220),
+        new Inimigo(obsx = 1450,obsy = -170),
+        new Inimigo(1700, -500),
+        new Inimigo(obsx = 3060, obsy = -1045),
+        new Inimigo(obsx = 3410, obsy = -1045),
+        new Inimigo(obsx = 3315, obsy = -275),
+        new Inimigo(obsx = 3315, obsy = -55),
+        new Inimigo(obsx = 3110, obsy = -150),
+        new Inimigo(obsx = 2640, obsy = -125),
+        new Inimigo(obsx = 2480, obsy = -370))
     function MostrarPersonagem() {
-        for(let i=0;i<=quantidade.length-1;i++){
+        for(let i = 0;i <= quantidade.length -1; i++){
                 quantidade[i].mostrarNaTela()
         }
 
-        for(let i=0;i<=quantidade.length-1;i++){
+        for(let i = 0;i <= quantidade.length -1; i++){
             
-            if(quantidade[i].hp2 <0){
-                quantidade.splice(i,1)
+            if(quantidade[i].hp2 < 0){
+                quantidade.splice(i, 1)
             }
         }
 
-
       sheroi.mostrarNaTela(x,y)
-
-        
     }
 
-    // Quantidade de pixel que o objeto se movimenta.
+    // QUANTIDADE DE PIXEL QUE O OBJETO MOVIMENTA
     var taxa = 20;
 
-    // Vai acionar um Evento que quando uma tecla for Pressionada ele vai executar a função Movimento.
+    // QUANDO AS TECLAS FOREM ACIONADAS, ACIONA O EVENTO QUE FAZ O PERSONAGEM ANDAR
     document.addEventListener("keydown", MovimentaPersonagem);
     document.addEventListener("keyup",combate);
 
-
-    // Função do Plano de Fundo.
-    function background() {
-       
+    //PLANO DE FUNDO
+    function background() {       
         
-        ctx.drawImage(fundo, mapax, mapay,2500, 1800)
+        ctx.drawImage(fundo, mapax, mapay, 2500, 1800)
     }
     //funcao que le quando soltamos a tecla.
     function combate(evento){
             if(evento.keyCode == esquerdaA){
-                camx=0
+                camx = 0
                 andarEsquerda = false
-                animay=1
-                cont =0
+                animay = 1 
+                cont = 0
                 animax = 0
             }else if(evento.keyCode == direitaA){
-                camx=0
-                animay=3
+                camx = 0
+                animay = 3
                 andarDireita = false
-                cont=0
+                cont = 0
                 animax = 0
             }else if(evento.keyCode == cimaA){
-                animay=0
-                animax=1
-                andarCima=false
-                camy=0
+                animay = 0
+                animax = 1
+                andarCima = false
+                camy = 0
             }else if(evento.keyCode == baixoA){
-                andarBaixo=false
-                animay=2
-                animax=0
-                camy=0
+                andarBaixo = false
+                animay = 2
+                animax = 0
+                camy = 0
             }
 
             if(evento.keyCode == golpe){
-                armasx=10000
-                armasy =1000
-                camx=0
-
+                armasx = 10000
+                armasy = 1000
+                camx = 0
             }
     }
 
@@ -751,69 +710,62 @@
         }
     }
 
-    function colisaoMapa2(){
-        if(colisaoMapas == 2){
+        function colisaoMapa2(){
+            if(colisaoMapas == 2){
                 ////////////COLISÃO PAREDES CIMA/////////////
-            if((x >= 2130 && x <= 3750 && y == -1065) || (x >= 1925 && x <= 2070 && y == -1140) || (x >= 1940 && x <= 3535 && y == -405) || (x >= 1725 && x <= 1890 && y == -555)){
-                andarCima = false
-                pauseCima = true
-                camy = 0
-            }else{
-                pauseCima = false
-            }
-             //COLISÃO PAREDES DE BAIXO//
-             if((x >= 1915 && x <= 3565 && y == -885) || (x >= 1985 && x <= 3750 && y == 50) || (x >= 1705 && x <= 1960 && y == 200)){
-                andarBaixo = false
-                pauseBaixo = true
-                camy = 0
+                if((x >= 2130 && x <= 3750 && y == -1065) || (x >= 1925 && x <= 2070 && y == -1140) || (x >= 1940 && x <= 3535 && y == -405) || (x >= 1725 && x <= 1890 && y == -555)){
+                    andarCima = false
+                    pauseCima = true
+                    camy = 0
                 }else{
-                pauseBaixo = false
+                    pauseCima = false
+                }
+             //COLISÃO PAREDES DE BAIXO//
+                 if((x >= 1915 && x <= 3565 && y == -885) || (x >= 1985 && x <= 3750 && y == 50) || (x >= 1705 && x <= 1960 && y == 200)){
+                    andarBaixo = false
+                    pauseBaixo = true
+                    camy = 0
+                }else{
+                    pauseBaixo = false
                 }
                      //COLISÃO PAREDES DIREITAS//
-                 if((y >= -1065 && y <= 55 && x == 3755) ||(y >= 60 && y <= 215 && x == 1945)){
+                 if((y >= -1065 && y <= 55 && x == 3755) ||(y >= 60 && y <= 215 && x == 1945) || (x == 1880 && y >= -555 && y <= -420)){
                     andarDireita = false
                     pauseDireita = true
                     camx = 0
                 }else{
                     pauseDireita = false
 
-
                 }
 
                     //COLISÃO PARADES ESQUERDAS//
-                if((y <= -460 && y >= -860 && x == 3590) || (y <= 200 && y >= -570 && x == 1720)){
+                if((y <= -460 && y >= -860 && x == 3590) || (y <= 200 && y >= -570 && x == 1720) || (x == 1925 && y <= -885 && y >= -1140)){
                     andarEsquerda = false
                     pauseEsquerda = true
                     camx = 0
                 }else{
                     pauseEsquerda = false
-            } 
+                } 
+            }
         }
-    }
     
-
     colisaoMapa()
     colisaoMapa2()
-
     
-    //Tela de Gamer Over
+    //TELA DO GAME OVER
     if(hp == 0){
        document.getElementById("over").style.width = '100%'
     }
     
-
-    // Determina a taxa de atualização da Tela e Puxa a Função Central.
+    //DETERMINA A ATUALIZAÇÃO DA TELA E PUXA A FUNÇÃO CENTRAL
 
     requestAnimationFrame(main)
 
-
-// descrição do trabalho
-// função que abre a descrição
-function opeNav(){
-    document.getElementById("myNav").style.width = '100%'
-    
+    //FUNÇÃO QUE ABRE O HTML MOSTRANDO O NOME DOS ALUNOS DO GRUPO.
+    function opeNav(){
+        document.getElementById("myNav").style.width = '100%'
     }
     // função que fecha a descrição
     function closeNav(){
-    document.getElementById("myNav").style.width = '0%'
+        document.getElementById("myNav").style.width = '0%'
     }
