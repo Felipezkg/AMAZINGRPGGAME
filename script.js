@@ -741,6 +741,15 @@
             }else{
                 pauseCima = false
             }
+            //COLISÃO BAIXO 1//
+            if((x >= 2325 && x <= 4035 && y == -835)){
+                andarBaixo = false
+                pauseBaixo = true
+                camy = 0
+            }else{
+                pauseBaixo = false
+
+            }
         }
     }
 
