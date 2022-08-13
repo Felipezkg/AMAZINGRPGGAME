@@ -119,6 +119,7 @@
                 }
 
                 
+                
                
                 if(armasx==10000){
                     bateu=true
