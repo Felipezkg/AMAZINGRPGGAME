@@ -234,7 +234,7 @@
     pernas.src = "pernaandando1.png"
 
     //poder de ataque
-    var ataque = 5
+    var ataque = 10
     var dano =true
     // CÓDIGOS DO TECLADO
     var somar = 0
@@ -299,8 +299,6 @@
             colisaoMapa()
             AnimacaoMovimentoEsqueleto()
             colisaoMapa2()
-            MostrarBarraDeLvl()
-            mostrarInventario()
 
         }
 
@@ -315,34 +313,8 @@
         baumapa[0].mostrarNaTela()
 
     }
-    //funcao que monstra lvl
-    function MostrarBarraDeLvl(){
-
-        ctx2.fillStyle='black'
-        ctx2.rect(40,46,490,30)
-        ctx2.fill()
-        
-       
-        ctx2.fillStyle='gray'
-        ctx2.beginPath();
-        ctx2.rect(42,48,lvl,22)
-        ctx2.closePath();
-        ctx2.fill()
-
+   
     
-
-    }
-    function mostrarInventario(){   
-        ctx2.drawImage(inventario,0,0,1200,380,0,10,1020,300)
-        
-        if(showIventory==true){
-
-
-    
-            }
-
-
-    }
 
     //FUNÇAÕ QUE MUDA DE MAPA
     function mudarmapa(){
