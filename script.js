@@ -277,6 +277,7 @@
 
     //FUNÇÃO PRINCIPAL QUE CHAMA TODAS AS OUTRAS
     function main() {
+        console.log(x,y)
         if(pauseGame == false){
             ColisaoEDano()
             mudarmapa()  
