@@ -169,12 +169,16 @@
 
                 ctx.drawImage(bau,this.animacaox[0],this.animacaoy[0],this.largura,this.altura,this.posicaox,this.posicaoy,64,54)
                 if(x>=25&&x<=105&&y>=305&&y<=375){
-                ctx.drawImage(letras,32*4,31*4,this.alturafonte,this.largurafonte,this.posicaox+20,this.posicaoy-20,20,20)    
+                    
+                ctx.drawImage(letras,32*4,31*4,this.alturafonte,this.largurafonte,this.posicaox+20,this.posicaoy-20,20,20)  
+                if(showIventory==true){
+                    cabelo.src='capaceteandando1.png'
+                    cabelo2.src='capacetegolpe1.png'  
+                }  
                 }
                 
                 if(x==this.posicaox){
-                    cabelo.src='capaceteandando1.png'
-                    cabelo2.src='capacetegolpe1.png'  
+                    
                 }            
             }
         }
@@ -292,13 +296,15 @@
 
         if(pauseGame == false){
             ColisaoEDano()
-            mudarmapa()  
             background();
             MovimentaCamera()
             MostrarPersonagem()
             colisaoMapa()
             AnimacaoMovimentoEsqueleto()
             colisaoMapa2()
+            MostrarBaus()
+            mudarmapa()  
+
 
         }
 
@@ -317,14 +323,24 @@
     
 
     //FUNÇAÕ QUE MUDA DE MAPA
-    function mudarmapa(){
+    function mudarmapa(){ 
+        let posicaoE = 2200     
 
-        if((x >= 2140 && x <= 2200) && y <= -1000 && y >=-1095){
+        if(colisaoMapas==1){
+          if((x >= 2140 && x <= 2200) && y <= -1000 && y >=-1095){
+        ctx.drawImage(letras,32*4,31*4,32,32,posicaoE,-1000,20,20) 
+
+            if(showIventory==true){
+                posicaoE-100
             fundo.src = 'mapa2.png'
             mapax = 1500
             mapay =- 1250
             colisaoMapas = 2
+            }
+            
+        }  
         }
+        
     }
     //FUNÇÃO QUE ATUALIZA A POSIÇÃO DA CÂMERA USANDO O X E Y COMO PARÂMETRO
     function MovimentaCamera (){
@@ -364,13 +380,13 @@
             camx =- 5
         }
         if(evento.keyCode ==teclaE){
-            if(showIventory == false){
+            
                 showIventory = true 
             }else{
                 showIventory = false
             }
 
-        }
+        
 
         if(evento.keyCode == golpe){
             camx = false
@@ -670,7 +686,7 @@
 
         for(let i = 0;i <= quantidade.length -1; i++){
                 quantidade[i].mostrarNaTela()
-                if(dano==true&&x >quantidade[i].posicaox + passosEsqueletoX - 10 && x < quantidade[i].posicaox + passosEsqueletoX + 10 && y > quantidade[i].posicaoy + passosEsqueletoY -10 && y < quantidade[i].posicaoy + passosEsqueletoY + 10 ){
+                if(dano==true&&x >quantidade[i].posicaox + passosEsqueletoX - 25 && x < quantidade[i].posicaox + passosEsqueletoX + 25 && y > quantidade[i].posicaoy + passosEsqueletoY -10 && y < quantidade[i].posicaoy + passosEsqueletoY + 10 ){
                     if(heroiVetor[0].hp2==96){
                         heroiVetor[0].hp2 = 72
                     }else if(heroiVetor[0].hp2==72){
