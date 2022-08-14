@@ -1,10 +1,15 @@
-body{
+body{margin-top: 50px;
     text-align: center;
     background-color: #12091d;
 }
+#canvas2{
 
+justify-content:center ;
+position: absolute;
+
+
+}
 .canvas{
-    border: solid rgb(0, 0, 0) 5px;
 }
 
 .nav-button{
@@ -24,7 +29,6 @@ body{
 }
 
 .pontuacao{
-    font-size: 26px;
     font-family: 'Orbitron', sans-serif;
     font-family: 'Press Start 2P', cursive;
     color: #ffffff;
@@ -34,11 +38,26 @@ body{
 }
 
 .pontosObtidos{
-    font-size: 40px;
+    color: #ffffff;
+    position: absolute;
+    font-size: 20px;
+    margin-left: 440px;
+    margin-top: -590px;
 }
 
 .inimigosMortos{
-    font-size: 40px;
+    color: #ffffff;
+    position: absolute;
+    font-size: 20px;
+    margin-left: 590px;
+    margin-top: -590px;
+}
+#nivel{
+    position: absolute;
+    color: rgb(255, 255, 255);
+    font-size: 15px;
+    margin-top: -583px;
+    margin-left: -900px;
 }
 
 .overlay{

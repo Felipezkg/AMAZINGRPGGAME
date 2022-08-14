@@ -1,5 +1,6 @@
     const canvas = document.getElementById("canvas")
     const ctx = canvas.getContext('2d')
+    var ctx2 = document.getElementById("canvas2").getContext("2d");
 
     var letras = new Image()
     letras.src = "fonte.png"    
@@ -39,6 +40,7 @@
     var contadorDasMortes = 0
 
     var contadorDosPontos = 0
+
 
     //CLASSE DO PERSONAGEM
     class Personagens{
@@ -113,7 +115,7 @@
                 this.hp(this.posicaox + passosEsqueletoX, this.posicaoy + passosEsqueletoY)
 
                     if(armasx > (obsx + passosEsqueletoX) - 60 && armasx < (obsx + passosEsqueletoX) + 60 && y > obsy + passosEsqueletoY -60 && y < obsy + passosEsqueletoY + 60 && bateu == true){
-                    this.hp2 -= 14
+                    this.hp2 -= ataque
                     bateu = false
                     }
 
@@ -122,10 +124,25 @@
                 }
                 
                 if(this.hp2 <= 0){
-                    contadorDasMortes + 1
+                    
+                    lvl+=596/subiu
+                    if(lvl>=596){
+                        nivel++ 
+                        ataque+=5                   
+                        lvl=0
+                        if(subiu==3){
+                            subiu=4
+                        }else if(subiu==4){
+                            subiu=10
+                        }
+        
+                    }
+                    
+                    contadorDasMortes += 1
                     document.getElementById('morteInimigos').innerHTML = contadorDasMortes
                     contadorDosPontos += 10
                     document.getElementById('pontosGanhos').innerHTML = contadorDosPontos
+                    document.getElementById('nivel').innerHTML = "Lvl:"+nivel
                 }       
             }
         }
@@ -163,7 +180,9 @@
     var animaxEsqueleto = 2
     var andarCimaEsqueleto = false
     var andarBaixoEsqueleto = true
-    
+    //controle de Level
+    var nivel=1
+    var subiu=3
     //COLISAO DA ARMA COM O OBSX
     var bateu = true
     
@@ -201,6 +220,9 @@
     //IMAGEM DAS PERNAS
     var pernas = new Image()
     pernas.src = "pernaandando1.png"
+
+    //poder de ataque
+    var ataque = 5
    
     // CÓDIGOS DO TECLADO
     var somar = 0
@@ -250,6 +272,8 @@
     //VARIÁVEL DE SELEÇÃO DE ANIMAÇÃO DO COMBATE
     var animaG = false
     var colisaoMapas = 1
+    var lvl  = 0
+    document.getElementById('nivel').innerHTML = "Lvl:"+nivel
 
     //FUNÇÃO PRINCIPAL QUE CHAMA TODAS AS OUTRAS
     function main() {
@@ -262,14 +286,41 @@
             colisaoMapa()
             AnimacaoMovimentoEsqueleto()
             colisaoMapa2()
+            MostrarBarraDeLvl()
+            mostrarInventario()
         }
 
         requestAnimationFrame(main)
+        
        
     }
     baumapa.push(new Baus(75,400))
     function MostrarBaus(){
         baumapa[0].mostrarNaTela()
+
+    }
+    //funcao que monstra lvl
+    function MostrarBarraDeLvl(){
+
+        ctx2.fillStyle='white'
+        ctx2.rect(90,20,600,15)
+        ctx2.fill()
+        
+       
+        ctx2.fillStyle='gray'
+        ctx2.beginPath();
+        ctx2.rect(92,22,lvl,11)
+        ctx2.closePath();
+        ctx2.fill()
+
+    
+
+    }
+    function mostrarInventario(){
+        
+       
+
+
 
     }
 
