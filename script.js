@@ -2,6 +2,9 @@
     const ctx = canvas.getContext('2d')
     var ctx2 = document.getElementById("canvas2").getContext("2d");
 
+    var inventario = new Image()
+    inventario.src = 'ui.png'
+
     var letras = new Image()
     letras.src = "fonte.png"    
 
@@ -52,6 +55,7 @@
                 this.altura = 64
                 this.largura = 64
                 this.cabeca = []
+                this.hp2 = 96
                 this.mostrarNaTela = function(x,y){
 
                     ctx.drawImage(img,this.animacaox[animax],this.animacaoy[animay],this.largura,this.altura,x,y,100,100)
@@ -59,6 +63,8 @@
                     ctx.drawImage(camisa,this.animacaox[animax],this.animacaoy[animay],this.largura,this.altura,x,y,100,100)
                     ctx.drawImage(pernas,this.animacaox[animax],this.animacaoy[animay],this.largura,this.altura,x,y,100,100)
                     this.hp(x,y)
+                    
+                   
                     if(animaG == true){
                         ctx.drawImage(espada,sheroi.animacaox[animax],sheroi.animacaoy[animay],sheroi.largura,sheroi.altura,x,y,100,100)
                     }
@@ -73,7 +79,7 @@
 
                 ctx.fillStyle = 'green';
                 ctx.beginPath();
-                ctx.rect(x + 1, y - 15,hp, 12)
+                ctx.rect(x + 1, y - 15,this.hp2, 12)
                 ctx.closePath();
                 ctx.fill();
 
@@ -172,8 +178,11 @@
                 }            
             }
         }
-    }   
+    }  
+    //mostrar inventario
+    var showIventory = false
 
+    var teclaE = 69
     var passosEsqueletoX = 5
     var passosEsqueletoY = 5
     var animayEsqueleto = 2
@@ -186,6 +195,9 @@
     //COLISAO DA ARMA COM O OBSX
     var bateu = true
     
+    //vetor heroi
+    var heroiVetor=[]
+
     //VETOR DOS BAUS
     var baumapa = []
     //VETOR DOS INIMIGOS
@@ -223,7 +235,7 @@
 
     //poder de ataque
     var ataque = 5
-   
+    var dano =true
     // CÓDIGOS DO TECLADO
     var somar = 0
     var esquerdaA = 65
@@ -277,7 +289,7 @@
 
     //FUNÇÃO PRINCIPAL QUE CHAMA TODAS AS OUTRAS
     function main() {
-        console.log(x,y)
+
         if(pauseGame == false){
             ColisaoEDano()
             mudarmapa()  
@@ -289,9 +301,12 @@
             colisaoMapa2()
             MostrarBarraDeLvl()
             mostrarInventario()
+
         }
 
         requestAnimationFrame(main)
+        
+        
         
        
     }
@@ -303,24 +318,28 @@
     //funcao que monstra lvl
     function MostrarBarraDeLvl(){
 
-        ctx2.fillStyle='white'
-        ctx2.rect(90,20,600,15)
+        ctx2.fillStyle='black'
+        ctx2.rect(40,46,490,30)
         ctx2.fill()
         
        
         ctx2.fillStyle='gray'
         ctx2.beginPath();
-        ctx2.rect(92,22,lvl,11)
+        ctx2.rect(42,48,lvl,22)
         ctx2.closePath();
         ctx2.fill()
 
     
 
     }
-    function mostrarInventario(){
+    function mostrarInventario(){   
+        ctx2.drawImage(inventario,0,0,1200,380,0,10,1020,300)
         
-       
+        if(showIventory==true){
 
+
+    
+            }
 
 
     }
@@ -371,6 +390,14 @@
             ponto = false
             andarDireita = true
             camx =- 5
+        }
+        if(evento.keyCode ==teclaE){
+            if(showIventory == false){
+                showIventory = true 
+            }else{
+                showIventory = false
+            }
+
         }
 
         if(evento.keyCode == golpe){
@@ -663,9 +690,28 @@
         new Inimigo(obsx = 3110, obsy = -150),
         new Inimigo(obsx = 2640, obsy = -125),
         new Inimigo(obsx = 2480, obsy = -370))
+        heroiVetor.push(new Personagens(x,y))
+
+        
     function MostrarPersonagem() {
+        
+
         for(let i = 0;i <= quantidade.length -1; i++){
                 quantidade[i].mostrarNaTela()
+                if(dano==true&&x >quantidade[i].posicaox + passosEsqueletoX - 10 && x < quantidade[i].posicaox + passosEsqueletoX + 10 && y > quantidade[i].posicaoy + passosEsqueletoY -10 && y < quantidade[i].posicaoy + passosEsqueletoY + 10 ){
+                    if(heroiVetor[0].hp2==96){
+                        heroiVetor[0].hp2 = 72
+                    }else if(heroiVetor[0].hp2==72){
+                        heroiVetor[0].hp2=48
+                    }else if (heroiVetor[0].hp2==48){
+                        heroiVetor[0].hp2=24
+                    }else if(heroiVetor[0].hp2==24){
+                        heroiVetor[0].hp2=0
+                        x=10000
+                        pauseGame=true
+                    }
+                    }    
+                    
         }
 
         for(let i = 0;i <= quantidade.length -1; i++){
@@ -674,8 +720,7 @@
                 quantidade.splice(i, 1)
             }
         }
-
-      sheroi.mostrarNaTela(x,y)
+        heroiVetor[0].mostrarNaTela(x,y)
     }
 
     // QUANTIDADE DE PIXEL QUE O OBJETO MOVIMENTA
@@ -714,6 +759,8 @@
                 animay = 2
                 animax = 0
                 camy = 0
+            }
+            if(evento.keyCode ==teclaE){
             }
 
             if(evento.keyCode == golpe){

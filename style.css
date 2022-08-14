@@ -29,8 +29,7 @@ position: absolute;
 }
 
 .pontuacao{
-    font-family: 'Orbitron', sans-serif;
-    font-family: 'Press Start 2P', cursive;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     color: #ffffff;
     display: flex;
     justify-content: space-evenly;
@@ -38,26 +37,30 @@ position: absolute;
 }
 
 .pontosObtidos{
-    color: #ffffff;
+    color: #d4ac26;
+    -webkit-text-stroke: 1px rgb(8, 8, 8);
     position: absolute;
     font-size: 20px;
-    margin-left: 440px;
-    margin-top: -590px;
+    margin-left: 150px;
+    margin-top: -575px;
 }
 
 .inimigosMortos{
-    color: #ffffff;
+    color: #d4ac26;
+    -webkit-text-stroke: 1px rgb(8, 8, 8);
     position: absolute;
     font-size: 20px;
-    margin-left: 590px;
-    margin-top: -590px;
+    margin-left: 150px;
+    margin-top: -540px;
 }
 #nivel{
     position: absolute;
-    color: rgb(255, 255, 255);
-    font-size: 15px;
-    margin-top: -583px;
-    margin-left: -900px;
+    color: #030303;
+    -webkit-text-stroke: 1px rgb(8, 8, 8);
+    font-size: 14px;
+    margin-top: -568px;
+    margin-left: -905px;
+    
 }
 
 .overlay{
