@@ -331,16 +331,83 @@
         baumapa[0].mostrarNaTela()
 
     }
+    //classe do boss do game
+    class Boss{
+        constructor(obsx,obsy){
+                this.posicaox = obsx
+                this.posicaoy = obsy
+                this.animacaox = [0,64,128,192,256,320,384,448,512]
+                this.animacaoy = [0,64,128,192]
+                this.altura = 64
+                this.largura = 64
+                this.hp2 = 97*3
+                this.passos = 0
+                this.hp = function hp(obsx,obsy){
+
+
+                    ctx.fillStyle = 'white';
+                    ctx.beginPath();
+                    ctx.rect(obsx - 50, obsy - 17, 3*98, 16)
+                    ctx.closePath();
+                    ctx.fill();
+
+                    ctx.fillStyle = 'red';
+                    ctx.beginPath();
+                    ctx.rect(obsx -48, obsy - 15,this.hp2, 12)
+                    ctx.closePath();
+                    ctx.fill();
+
+                }
+            this.mostrarNaTela = function(){
+
+                ctx.drawImage(esqueleto, this.animacaox [animaxEsqueleto], this.animacaoy [animayEsqueleto], this.largura, this.altura, this.posicaox + passosEsqueletoX, this.posicaoy + passosEsqueletoY, 200, 200)
+
+                this.hp(this.posicaox + passosEsqueletoX, this.posicaoy + passosEsqueletoY)
+
+                    if(armasx > (obsx + passosEsqueletoX) - 100 && armasx < (obsx + passosEsqueletoX) + 100 && y > obsy + passosEsqueletoY -110 && y < obsy + passosEsqueletoY + 110 && bateu == true){
+                    this.hp2 -= ataque
+                    bateu = false
+                    }
+
+                if(armasx == 10000){
+                    bateu = true
+                }
+                
+                if(this.hp2 <= 0){
+                    
+                    lvl+=596/subiu
+                    if(lvl>=596){
+                        nivel++ 
+                        ataque+=5                   
+                        lvl=0
+                        if(subiu==3){
+                            subiu=4
+                        }else if(subiu==4){
+                            subiu=10
+                        }
+        
+                    }
+                    
+                    contadorDasMortes += 1
+                    document.getElementById('morteInimigos').innerHTML = contadorDasMortes
+                    contadorDosPontos += 10
+                    document.getElementById('pontosGanhos').innerHTML = contadorDosPontos
+                    document.getElementById('nivel').innerHTML = "Lvl:"+nivel
+                }       
+            }
+        }
+    }
+
     //FUNÇAÕ QUE MUDA DE MAPA
-    function mudarmapa(){ 
+      function mudarmapa(){ 
         let posicaoE = 2200     
 
         if(colisaoMapas==1){
           if((x >= 2140 && x <= 2200) && y <= -1000 && y >=-1095){
-        ctx.drawImage(letras,32*4,31*4,32,32,posicaoE,-1000,20,20) 
+        ctx.drawImage(letras,32*4,31*4,32,32,2200,-1000,20,20) 
 
             if(showIventory==true){
-                posicaoE-100
+                posicaoE-1780
             fundo.src = 'mapa2.png'
             mapax = 1500
             mapay =- 1250
@@ -348,6 +415,17 @@
             }
             
         }  
+        }else if(colisaoMapas==2){
+            if((x >= 1760 && x <= 1830) && y <= -415 && y >=-495){
+                ctx.drawImage(letras,32*4,31*4,32,32,1840,-430,20,20)
+                if(showIventory==true){
+                posicaoE-100
+                fundo.src = 'mapafinal.png'
+                mapax = 1500
+                mapay =- 1250
+                colisaoMapas = 3
+                }
+            }
         }
         
     }
@@ -691,7 +769,9 @@
         new Inimigo(obsx = 3315, obsy = -55),
         new Inimigo(obsx = 3110, obsy = -150),
         new Inimigo(obsx = 2640, obsy = -125),
-        new Inimigo(obsx = 2480, obsy = -370))
+        new Inimigo(obsx = 2480, obsy = -370),
+        new Boss(2860,-620)
+        )
         heroiVetor.push(new Personagens(x,y))
 
         
