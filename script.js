@@ -47,6 +47,9 @@
     var servo_boss = new Image()
     servo_boss.src = 'servo_boss.png'
 
+    var final = new Image()
+    final.src = 'final.png'
+
     var pauseGame = false
 
     var contadorDasMortes = 0
@@ -257,7 +260,7 @@
     pernas.src = "pernaandando1.png"
 
     //poder de ataque
-    var ataque = 100
+    var ataque = 10
     var dano =true
     // CÓDIGOS DO TECLADO
     var somar = 0
@@ -453,12 +456,21 @@
                         new Inimigo(obsx = 3110, obsy = -150),
                         new Inimigo(obsx = 2640, obsy = -125),
                         new Inimigo(obsx = 2480, obsy = -370),
-                        new Boss(2860,-620)
-                    )
+                        new Inimigo(obsx = 2650, obsy = -800),
+                        new Inimigo(obsx = 2950, obsy = -1000),
+                        new Boss(2860,-620))
                     }
+                    
                 }
             }
         
+        }
+        if(colisaoMapas == 3){
+            if(quantidade.length == 0){
+                document.getElementById("final").style.width = '100%'
+            }
+            
+            
         }
     }
     //FUNÇÃO QUE ATUALIZA A POSIÇÃO DA CÂMERA USANDO O X E Y COMO PARÂMETRO
@@ -792,9 +804,11 @@
                 }
     } 
         //QUANTIDADE DE INIMIGOS PELO JOGO TODO
-        quantidade.push(new Inimigo(obsx = 990, obsy = 220),
-                        new Inimigo(obsx = 1450,obsy = -170),
-                        new Inimigo(1700, -500))
+        quantidade.push(new Inimigo(obsx = 990 , obsy =  220),
+                        new Inimigo(obsx = 1450, obsy = -170),
+                        new Inimigo(obsx = 1700, obsy = -500),
+                        new Inimigo(obsx = 1430, obsy =  230),
+                        new Inimigo(obsx = 2000, obsy = -900))
         heroiVetor.push(new Personagens(x,y))
 
         
