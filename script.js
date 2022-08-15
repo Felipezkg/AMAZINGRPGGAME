@@ -41,6 +41,12 @@
     var boss = new Image()
     boss.src = 'boss.png'
 
+    var orc = new Image()
+    orc.src = 'orc.png'
+
+    var servo_boss = new Image()
+    servo_boss.src = 'servo_boss.png'
+
     var pauseGame = false
 
     var contadorDasMortes = 0
@@ -251,7 +257,7 @@
     pernas.src = "pernaandando1.png"
 
     //poder de ataque
-    var ataque = 10
+    var ataque = 100
     var dano =true
     // CÓDIGOS DO TECLADO
     var somar = 0
@@ -407,31 +413,53 @@
         let posicaoE = 2200     
 
         if(colisaoMapas==1){
-          if((x >= 2140 && x <= 2200) && y <= -1000 && y >=-1095){
-        ctx.drawImage(letras,32*4,31*4,32,32,2200,-1000,20,20) 
-
-            if(showIventory==true){
-                posicaoE-1780
-            fundo.src = 'mapa2.png'
-            mapax = 1500
-            mapay =- 1250
-            colisaoMapas = 2
-            }
-            
-        }  
-        }else if(colisaoMapas==2){
-            if((x >= 1760 && x <= 1830) && y <= -415 && y >=-495){
-                ctx.drawImage(letras,32*4,31*4,32,32,1840,-430,20,20)
-                if(showIventory==true){
-                posicaoE-100
-                fundo.src = 'mapafinal.png'
-                mapax = 1500
-                mapay =- 1250
-                colisaoMapas = 3
-                }
+            if(quantidade.length == 0){
+                if((x >= 2140 && x <= 2200) && y <= -1000 && y >=-1095){
+                    ctx.drawImage(letras,32*4,31*4,32,32,2200,-1000,20,20) 
+        
+                    if(showIventory==true){
+                    fundo.src = 'mapa2.png'
+                    esqueleto = orc
+                    mapax = 1500
+                    mapay =- 1250
+                    colisaoMapas = 2
+                    quantidade.push(
+                        new Inimigo(obsx = 3060, obsy = -1045),
+                        new Inimigo(obsx = 3410, obsy = -1045),
+                        new Inimigo(obsx = 3315, obsy = -300),
+                        new Inimigo(obsx = 3315, obsy = -110),
+                        new Inimigo(obsx = 2500, obsy = -300),
+                        new Inimigo(obsx = 2000, obsy = -110),
+                        new Inimigo(obsx = 1850, obsy = -300)
+                    )
+                    
+                    }
+                    
+                }  
             }
         }
+        if(colisaoMapas==2){
+            if(quantidade.length == 0){
+                if((x >= 1760 && x <= 1830) && y <= -415 && y >=-495){
+                    ctx.drawImage(letras,32*4,31*4,32,32,1840,-430,20,20)
+                    if(showIventory==true){
+                    esqueleto = servo_boss
+                    posicaoE-100
+                    fundo.src = 'mapafinal.png'
+                    mapax = 1500
+                    mapay =- 1250
+                    colisaoMapas = 3
+                    quantidade.push(
+                        new Inimigo(obsx = 3110, obsy = -150),
+                        new Inimigo(obsx = 2640, obsy = -125),
+                        new Inimigo(obsx = 2480, obsy = -370),
+                        new Boss(2860,-620)
+                    )
+                    }
+                }
+            }
         
+        }
     }
     //FUNÇÃO QUE ATUALIZA A POSIÇÃO DA CÂMERA USANDO O X E Y COMO PARÂMETRO
     function MovimentaCamera (){
@@ -765,17 +793,8 @@
     } 
         //QUANTIDADE DE INIMIGOS PELO JOGO TODO
         quantidade.push(new Inimigo(obsx = 990, obsy = 220),
-        new Inimigo(obsx = 1450,obsy = -170),
-        new Inimigo(1700, -500),
-        new Inimigo(obsx = 3060, obsy = -1045),
-        new Inimigo(obsx = 3410, obsy = -1045),
-        new Inimigo(obsx = 3315, obsy = -275),
-        new Inimigo(obsx = 3315, obsy = -55),
-        new Inimigo(obsx = 3110, obsy = -150),
-        new Inimigo(obsx = 2640, obsy = -125),
-        new Inimigo(obsx = 2480, obsy = -370),
-        new Boss(2860,-620)
-        )
+                        new Inimigo(obsx = 1450,obsy = -170),
+                        new Inimigo(1700, -500))
         heroiVetor.push(new Personagens(x,y))
 
         
