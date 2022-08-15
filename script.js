@@ -171,19 +171,19 @@
                 this.posicaox = posBauX
                 this.posicaoy = posBauY
                 this.animacaox = [0]
-                this.animacaoy = [64]
+                this.animacaoy = [96,64]
                 this.altura = 32
                 this.largura = 32
                 this.alturafonte = 28
                 this.largurafonte = 32
                
             this.mostrarNaTela = function(){
-
-                ctx.drawImage(bau,this.animacaox[0],this.animacaoy[0],this.largura,this.altura,this.posicaox,this.posicaoy,64,54)
+                ctx.drawImage(bau,this.animacaox[0],this.animacaoy[mudarPAberto],this.largura,this.altura,this.posicaox,this.posicaoy,64,54)
                 if(x>=25&&x<=105&&y>=305&&y<=375){
                     
                 ctx.drawImage(letras,32*4,31*4,this.alturafonte,this.largurafonte,this.posicaox+20,this.posicaoy-20,20,20)  
                 if(showIventory==true){
+                    mudarPAberto=0
                     cabelo.src='capaceteandando1.png'
                     cabelo2.src='capacetegolpe1.png'                    
                 }  
@@ -197,6 +197,7 @@
     }  
     //mostrar inventario
     var showIventory = false
+    var mudarPAberto = 1
 
     var teclaE = 69
     var passosEsqueletoX = 5
