@@ -68,6 +68,14 @@
                     if(animaG == true){
                         ctx.drawImage(espada,sheroi.animacaox[animax],sheroi.animacaoy[animay],sheroi.largura,sheroi.altura,x,y,100,100)
                     }
+
+                     //TELA DO GAME OVER
+                    if(this.hp2 <= 0){
+                    document.getElementById("over").style.width = '100%'
+                    reiniciarMapa = true    
+
+                    }
+
                 }
             this.hp = function barraHp(x,y){ 
         
@@ -85,6 +93,7 @@
 
             }
         }
+        
     }
     
      //CLASSE DO INIMIGO
@@ -158,8 +167,8 @@
         constructor(posBauX,posBauY){
                 this.posicaox = posBauX
                 this.posicaoy = posBauY
-                this.animacaox = [0,64,128,192,256,320,384,448,512]
-                this.animacaoy = [0,64,128,192]
+                this.animacaox = [0]
+                this.animacaoy = [64]
                 this.altura = 32
                 this.largura = 32
                 this.alturafonte = 28
@@ -173,7 +182,7 @@
                 ctx.drawImage(letras,32*4,31*4,this.alturafonte,this.largurafonte,this.posicaox+20,this.posicaoy-20,20,20)  
                 if(showIventory==true){
                     cabelo.src='capaceteandando1.png'
-                    cabelo2.src='capacetegolpe1.png'  
+                    cabelo2.src='capacetegolpe1.png'                    
                 }  
                 }
                 
@@ -264,6 +273,10 @@
     var pauseCima = false
     var pauseBaixo = false
 
+    //VARIÁVEL PARA REINICIAR O JOGO
+    var enterR = 13
+    var reiniciarMapa = false
+
     //CALIBRAÇÃO DA CÂMERA COM OS OBJETOS NA TELA
     var ponto = true
     var ponto2 = true
@@ -296,15 +309,14 @@
 
         if(pauseGame == false){
             ColisaoEDano()
-            background();
+            background()
             MovimentaCamera()
+            MostrarBaus()
             MostrarPersonagem()
             colisaoMapa()
             AnimacaoMovimentoEsqueleto()
             colisaoMapa2()
-            MostrarBaus()
             mudarmapa()  
-
 
         }
 
@@ -319,9 +331,6 @@
         baumapa[0].mostrarNaTela()
 
     }
-   
-    
-
     //FUNÇAÕ QUE MUDA DE MAPA
     function mudarmapa(){ 
         let posicaoE = 2200     
@@ -385,7 +394,6 @@
             }else{
                 showIventory = false
             }
-
         
 
         if(evento.keyCode == golpe){
@@ -409,14 +417,20 @@
             }
         }
     }
-
+    // FUNÇÃO PARA REINICIAR O MAPA
+    function Reiniciar_mapa(evento){
+        if(evento.keyCode == enterR && heroiVetor[0].hp2 <= 0){
+            location.reload()
+        }
+        
+    }
+    //FUNÇÃO PARA DETECTAR COLISÃO E CONTABILIZAR O DANO
     function ColisaoEDano(){
         for(i=0;i<quantidade.length-1;i++){
             if(armasx == quantidade[i].hp()){
             }
         }
     }
-
     //ANIMAÇÃO DA CAMINHADA DO ESQUELETO
     function AnimacaoMovimentoEsqueleto(){
         
@@ -716,7 +730,9 @@
 
     // QUANDO AS TECLAS FOREM ACIONADAS, ACIONA O EVENTO QUE FAZ O PERSONAGEM ANDAR
     document.addEventListener("keydown", MovimentaPersonagem);
-    document.addEventListener("keyup",combate);
+    document.addEventListener("keyup", combate);
+    // QUANDO A TECLA FOR ACIONADA, REINICIAR O MAPA.
+    document.addEventListener("keypress", Reiniciar_mapa)
 
     //PLANO DE FUNDO
     function background() {       
@@ -797,7 +813,7 @@
         }
     }
 
-        function colisaoMapa2(){
+    function colisaoMapa2(){
             if(colisaoMapas == 2){
                 ////////////COLISÃO PAREDES CIMA/////////////
                 if((x >= 2130 && x <= 3750 && y == -1065) || (x >= 1925 && x <= 2070 && y == -1140) || (x >= 1940 && x <= 3535 && y == -405) || (x >= 1725 && x <= 1890 && y == -555)){
@@ -834,15 +850,12 @@
                     pauseEsquerda = false
                 } 
             }
-        }
+    }
     
     colisaoMapa()
     colisaoMapa2()
     
-    //TELA DO GAME OVER
-    if(hp == 0){
-       document.getElementById("over").style.width = '100%'
-    }
+   
     
     //DETERMINA A ATUALIZAÇÃO DA TELA E PUXA A FUNÇÃO CENTRAL
 
