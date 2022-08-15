@@ -38,6 +38,9 @@
     var camisa = new Image()
     camisa.src = 'troncoandando1.png'
 
+    var boss = new Image()
+    boss.src = 'boss.png'
+
     var pauseGame = false
 
     var contadorDasMortes = 0
@@ -360,7 +363,7 @@
                 }
             this.mostrarNaTela = function(){
 
-                ctx.drawImage(esqueleto, this.animacaox [animaxEsqueleto], this.animacaoy [animayEsqueleto], this.largura, this.altura, this.posicaox + passosEsqueletoX, this.posicaoy + passosEsqueletoY, 200, 200)
+                ctx.drawImage(boss, this.animacaox [animaxEsqueleto], this.animacaoy [animayEsqueleto], this.largura, this.altura, this.posicaox + passosEsqueletoX, this.posicaoy + passosEsqueletoY, 200, 200)
 
                 this.hp(this.posicaox + passosEsqueletoX, this.posicaoy + passosEsqueletoY)
 
