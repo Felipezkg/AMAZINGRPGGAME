@@ -1,15 +1,13 @@
-body{margin-top: 50px;
+body{
+    margin-top: 50px;
     text-align: center;
     background-color: #12091d;
 }
+
 #canvas2{
+    justify-content:center ;
+    position: absolute;
 
-justify-content:center ;
-position: absolute;
-
-
-}
-.canvas{
 }
 
 .nav-button{
@@ -57,7 +55,7 @@ position: absolute;
     position: absolute;
     color: #bb9c11;
     -webkit-text-stroke: 1px rgb(204, 148, 26);
-    font-size: 14px;
+    font-size: 18px;
     margin-top: -598px;
     margin-left: -905px;
     
